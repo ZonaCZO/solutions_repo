@@ -68,6 +68,30 @@ However, real-world factors complicate the idealized model:
 
 To gain a deeper understanding of projectile motion, Python can be used to compute and visualize the relationship between launch angle and range.  
 
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+def range_of_projectile(v0, theta, g=9.81):
+    theta_rad = np.radians(theta)
+    return (v0**2 * np.sin(2 * theta_rad)) / g
+
+# Variable
+v0 = 20  # м/с
+angles = np.linspace(0, 90, 100) 
+ranges = [range_of_projectile(v0, theta) for theta in angles]
+
+# Graph
+plt.figure(figsize=(8, 5))
+plt.plot(angles, ranges, label=f'v0 = {v0} м/с')
+plt.xlabel('Launch Angle (degrees)')
+plt.ylabel('Range (m)')
+plt.title('Projectile Range vs. Launch Angle')
+plt.legend()
+plt.grid()
+plt.show()
+```
+
 ### **What does the provided script do?**  
 ✅ Computes the range for angles from $ 0^\circ $ to $ 90^\circ $.  
 ✅ Simulates the effect of different initial velocities.  
