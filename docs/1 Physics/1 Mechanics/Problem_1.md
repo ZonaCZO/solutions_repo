@@ -10,9 +10,9 @@ Projectile motion, the movement of an object thrown at an angle to the horizonta
 
 In projectile motion, an object moves under the influence of gravity, following a parabolic path. The key parameters include:  
 
-- **Initial velocity $ v_0 $** – the speed at which the object is launched.  
-- **Launch angle $ \theta $** – the angle between the initial velocity vector and the horizontal plane.  
-- **Acceleration due to gravity $ g $** – approximately $ 9.81 $ m/s² on Earth.  
+- **Initial velocity** $v_0$ – the speed at which the object is launched.  
+- **Launch angle** $\theta$ – the angle between the initial velocity vector and the horizontal plane.  
+- **Acceleration due to gravity** $g$ – approximately $9.81$ m/s² on Earth.  
 
 The motion can be decomposed into two components:  
 
@@ -42,9 +42,9 @@ This equation reveals that the range depends on the square of the initial veloci
 Key observations:  
 
 - **Maximum range** occurs at $ \theta = 45^\circ $ (assuming no air resistance).  
-- **Symmetry of trajectory:** The same range is achieved at complementary angles (e.g., $ 30^\circ $ and $ 60^\circ $ result in the same range).  
-- **Dependence on velocity:** Since $ R \propto v_0^2 $, doubling the initial velocity quadruples the range.  
-- **Effect of gravity:** On planets with lower gravity (e.g., the Moon, where $ g \approx 1.62 $ m/s²), projectiles travel much farther than on Earth.  
+- **Symmetry of trajectory:** The same range is achieved at complementary angles (e.g., $30^\circ$ and $60^\circ$ result in the same range).  
+- **Dependence on velocity:** Since $R\propto v_0^2$, doubling the initial velocity quadruples the range.  
+- **Effect of gravity:** On planets with lower gravity (e.g., the Moon, where $g \approx 1.62$ m/s²), projectiles travel much farther than on Earth.  
 
 ---
 
@@ -93,7 +93,7 @@ plt.show()
 ```
 
 ### **What does the provided script do?**  
-✅ Computes the range for angles from $ 0^\circ $ to $ 90^\circ $.  
+✅ Computes the range for angles from $0^\circ$ to $90^\circ$.  
 ✅ Simulates the effect of different initial velocities.  
 ✅ Plots a graph of range vs. launch angle.  
 
