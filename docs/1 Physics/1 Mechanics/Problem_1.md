@@ -10,9 +10,9 @@ Projectile motion, the movement of an object thrown at an angle to the horizonta
 
 In projectile motion, an object moves under the influence of gravity, following a parabolic path. The key parameters include:  
 
-- **Initial velocity ($ v_0 $)** – the speed at which the object is launched.  
-- **Launch angle ($ \theta $)** – the angle between the initial velocity vector and the horizontal plane.  
-- **Acceleration due to gravity ($ g $)** – approximately $ 9.81 $ m/s² on Earth.  
+- **Initial velocity $ v_0 $** – the speed at which the object is launched.  
+- **Launch angle $ \theta $** – the angle between the initial velocity vector and the horizontal plane.  
+- **Acceleration due to gravity $ g $** – approximately $ 9.81 $ m/s² on Earth.  
 
 The motion can be decomposed into two components:  
 
