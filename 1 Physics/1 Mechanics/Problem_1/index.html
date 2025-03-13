@@ -172,7 +172,67 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
-<p>hello world!</p>
+<h1 id="investigating-projectile-motion-dependence-of-range-on-launch-angle"><strong>Investigating Projectile Motion: Dependence of Range on Launch Angle</strong></h1>
+<p>Projectile motion, the movement of an object thrown at an angle to the horizontal, is a fundamental concept in physics. Understanding how the range of a projectile depends on the launch angle is not only mathematically intriguing but also has numerous real-world applications. This principle is widely used in various fields, from analyzing the flight of a soccer ball to calculating the trajectory of a spacecraft.  </p>
+<hr/>
+<h2 id="1-theoretical-foundation"><strong>1. Theoretical Foundation</strong></h2>
+<p>In projectile motion, an object moves under the influence of gravity, following a parabolic path. The key parameters include:  </p>
+<ul>
+<li><strong>Initial velocity ($ v_0 $)</strong> – the speed at which the object is launched.  </li>
+<li><strong>Launch angle ($ \theta $)</strong> – the angle between the initial velocity vector and the horizontal plane.  </li>
+<li><strong>Acceleration due to gravity ($ g $)</strong> – approximately $ 9.81 $ m/s² on Earth.  </li>
+</ul>
+<p>The motion can be decomposed into two components:  </p>
+<h3 id="equations-of-motion"><strong>Equations of Motion</strong></h3>
+<ul>
+<li><strong>Horizontal motion (constant velocity):</strong><br/>
+  $$
+  x = v_0 \cos\theta \cdot t
+  $$  </li>
+<li><strong>Vertical motion (accelerated motion due to gravity):</strong><br/>
+  $$
+  y = v_0 \sin\theta \cdot t - \frac{1}{2} g t^2
+  $$  </li>
+<li><strong>Time of flight (when the projectile returns to the ground, $ y = 0 $):</strong><br/>
+  $$
+  t = \frac{2 v_0 \sin\theta}{g}
+  $$  </li>
+<li><strong>Range (horizontal distance traveled before landing):</strong><br/>
+  $$
+  R = \frac{v_0^2 \sin(2\theta)}{g}
+  $$<br/>
+This equation reveals that the range depends on the square of the initial velocity, the sine of twice the launch angle, and the gravitational acceleration.  </li>
+</ul>
+<hr/>
+<h2 id="2-range-analysis-based-on-launch-angle"><strong>2. Range Analysis Based on Launch Angle</strong></h2>
+<p>Key observations:  </p>
+<ul>
+<li><strong>Maximum range</strong> occurs at $ \theta = 45^\circ $ (assuming no air resistance).  </li>
+<li><strong>Symmetry of trajectory:</strong> The same range is achieved at complementary angles (e.g., $ 30^\circ $ and $ 60^\circ $ result in the same range).  </li>
+<li><strong>Dependence on velocity:</strong> Since $ R \propto v_0^2 $, doubling the initial velocity quadruples the range.  </li>
+<li><strong>Effect of gravity:</strong> On planets with lower gravity (e.g., the Moon, where $ g \approx 1.62 $ m/s²), projectiles travel much farther than on Earth.  </li>
+</ul>
+<hr/>
+<h2 id="3-practical-applications-of-projectile-motion"><strong>3. Practical Applications of Projectile Motion</strong></h2>
+<p>Projectile motion plays a crucial role in various fields:  </p>
+<ol>
+<li><strong>Sports:</strong> Optimizing kick angles in soccer, basketball shots, and long jumps.  </li>
+<li><strong>Ballistics:</strong> Calculating bullet and missile trajectories.  </li>
+<li><strong>Engineering:</strong> Designing structures resistant to impact forces.  </li>
+<li><strong>Space Exploration:</strong> Determining launch trajectories for satellites and landers.  </li>
+</ol>
+<p>However, real-world factors complicate the idealized model:<br/>
+- <strong>Air resistance</strong> reduces the range.<br/>
+- <strong>Uneven terrain</strong> affects the landing position.<br/>
+- <strong>Magnus effect (object spin)</strong> alters the trajectory (e.g., in soccer or tennis).  </p>
+<hr/>
+<h2 id="4-implementation-and-visualization-with-code"><strong>4. Implementation and Visualization with Code</strong></h2>
+<p>To gain a deeper understanding of projectile motion, Python can be used to compute and visualize the relationship between launch angle and range.  </p>
+<h3 id="what-does-the-provided-script-do"><strong>What does the provided script do?</strong></h3>
+<p>✅ Computes the range for angles from $ 0^\circ $ to $ 90^\circ $.<br/>
+✅ Simulates the effect of different initial velocities.<br/>
+✅ Plots a graph of range vs. launch angle.  </p>
+<p>If additional factors such as air resistance or variable gravity (e.g., Mars) need to be considered, the code can be extended. Would you like to incorporate such enhancements? 🚀  </p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
