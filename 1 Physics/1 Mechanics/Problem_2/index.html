@@ -218,7 +218,7 @@ The discriminant is:
 $$
 \Delta = \gamma^2 - 4 \omega_0^2
 $$
-Assuming weak damping ($ \gamma &lt; 2 \omega_0 $, so $ \Delta &lt; 0 $), the roots are complex:
+Assuming weak damping (<span class="arithmatex">\(\gamma &lt; 2 \omega_0\)</span>, so <span class="arithmatex">\(\Delta &lt; 0\)</span>), the roots are complex:
 $$
 r = -\frac{\gamma}{2} \pm i \sqrt{\omega_0^2 - \left(\frac{\gamma}{2}\right)^2}
 $$
@@ -248,15 +248,15 @@ Compute the derivatives:
 $$
 (-B \omega^2 \cos(\omega t) - C \omega^2 \sin(\omega t)) + \gamma (-B \omega \sin(\omega t) + C \omega \cos(\omega t)) + \omega_0^2 (B \cos(\omega t) + C \sin(\omega t)) = A \cos(\omega t)
 $$
-Equate coefficients of $ \cos(\omega t) $ and $ \sin(\omega t) $:
-- For $ \cos(\omega t) $:
+Equate coefficients of $\cos(\omega t) $ and $ \sin(\omega t)$:
+- For <span class="arithmatex">\(\cos(\omega t)\)</span>:
 $$
 -B \omega^2 + \gamma C \omega + \omega_0^2 B = A
 $$
 $$
 B (\omega_0^2 - \omega^2) + \gamma C \omega = A \quad (1)
 $$
-- For $ \sin(\omega t) $:
+- For <span class="arithmatex">\(\sin(\omega t)\)</span>:
 $$
 -C \omega^2 - \gamma B \omega + \omega_0^2 C = 0
 $$
@@ -270,7 +270,7 @@ $$
 $$
 C = \frac{\gamma B \omega}{\omega_0^2 - \omega^2}
 $$
-Substitute $ C $ into (1):
+Substitute <span class="arithmatex">\(C\)</span> into (1):
 $$
 B (\omega_0^2 - \omega^2) + \gamma \left( \frac{\gamma B \omega}{\omega_0^2 - \omega^2} \right) \omega = A
 $$
@@ -283,7 +283,7 @@ $$
 $$
 B = \frac{A (\omega_0^2 - \omega^2)}{(\omega_0^2 - \omega^2)^2 + \gamma^2 \omega^2}
 $$
-Now solve for $ C $:
+Now solve for <span class="arithmatex">\(C\)</span>:
 $$
 C = \frac{\gamma \omega}{\omega_0^2 - \omega^2} \cdot \frac{A (\omega_0^2 - \omega^2)}{(\omega_0^2 - \omega^2)^2 + \gamma^2 \omega^2} = \frac{A \gamma \omega}{(\omega_0^2 - \omega^2)^2 + \gamma^2 \omega^2}
 $$
@@ -311,11 +311,11 @@ $$
 The first term (homogeneous) decays over time, leaving the steady-state solution (particular) as the dominant behavior.</p>
 <hr/>
 <p><strong>Step 6: Resonance Conditions</strong>
-Resonance occurs when the amplitude $ D $ is maximized:
+Resonance occurs when the amplitude <span class="arithmatex">\(D\)</span> is maximized:
 $$
 D = \frac{A}{\sqrt{(\omega_0^2 - \omega^2)^2 + \gamma^2 \omega^2}}
 $$
-The denominator is minimized when $ \omega \approx \omega_0 $, i.e., the driving frequency matches the natural frequency. For small damping, this leads to a large amplitude, increasing the system’s energy significantly.</p>
+The denominator is minimized when <span class="arithmatex">\(\omega \approx \omega_0\)</span>, i.e., the driving frequency matches the natural frequency. For small damping, this leads to a large amplitude, increasing the system’s energy significantly.</p>
 <hr/>
 <p><strong>Solution Summary</strong></p>
 <p><strong>Forced Damped Pendulum: Small-Angle Approximation Solution</strong></p>
