@@ -53,7 +53,7 @@ The discriminant is:
 $$
 \Delta = \gamma^2 - 4 \omega_0^2
 $$
-Assuming weak damping ($ \gamma < 2 \omega_0 $, so $ \Delta < 0 $), the roots are complex:
+Assuming weak damping ($\gamma < 2 \omega_0$, so $\Delta < 0$), the roots are complex:
 $$
 r = -\frac{\gamma}{2} \pm i \sqrt{\omega_0^2 - \left(\frac{\gamma}{2}\right)^2}
 $$
@@ -86,15 +86,15 @@ Substitute into the equation:
 $$
 (-B \omega^2 \cos(\omega t) - C \omega^2 \sin(\omega t)) + \gamma (-B \omega \sin(\omega t) + C \omega \cos(\omega t)) + \omega_0^2 (B \cos(\omega t) + C \sin(\omega t)) = A \cos(\omega t)
 $$
-Equate coefficients of $ \cos(\omega t) $ and $ \sin(\omega t) $:
-- For $ \cos(\omega t) $:
+Equate coefficients of $\cos(\omega t) $ and $ \sin(\omega t)$:
+- For $\cos(\omega t)$:
 $$
 -B \omega^2 + \gamma C \omega + \omega_0^2 B = A
 $$
 $$
 B (\omega_0^2 - \omega^2) + \gamma C \omega = A \quad (1)
 $$
-- For $ \sin(\omega t) $:
+- For $\sin(\omega t)$:
 $$
 -C \omega^2 - \gamma B \omega + \omega_0^2 C = 0
 $$
@@ -108,7 +108,7 @@ $$
 $$
 C = \frac{\gamma B \omega}{\omega_0^2 - \omega^2}
 $$
-Substitute $ C $ into (1):
+Substitute $C$ into (1):
 $$
 B (\omega_0^2 - \omega^2) + \gamma \left( \frac{\gamma B \omega}{\omega_0^2 - \omega^2} \right) \omega = A
 $$
@@ -121,7 +121,7 @@ $$
 $$
 B = \frac{A (\omega_0^2 - \omega^2)}{(\omega_0^2 - \omega^2)^2 + \gamma^2 \omega^2}
 $$
-Now solve for $ C $:
+Now solve for $C$:
 $$
 C = \frac{\gamma \omega}{\omega_0^2 - \omega^2} \cdot \frac{A (\omega_0^2 - \omega^2)}{(\omega_0^2 - \omega^2)^2 + \gamma^2 \omega^2} = \frac{A \gamma \omega}{(\omega_0^2 - \omega^2)^2 + \gamma^2 \omega^2}
 $$
@@ -153,11 +153,11 @@ The first term (homogeneous) decays over time, leaving the steady-state solution
 ---
 
 **Step 6: Resonance Conditions**
-Resonance occurs when the amplitude $ D $ is maximized:
+Resonance occurs when the amplitude $D$ is maximized:
 $$
 D = \frac{A}{\sqrt{(\omega_0^2 - \omega^2)^2 + \gamma^2 \omega^2}}
 $$
-The denominator is minimized when $ \omega \approx \omega_0 $, i.e., the driving frequency matches the natural frequency. For small damping, this leads to a large amplitude, increasing the system’s energy significantly.
+The denominator is minimized when $\omega \approx \omega_0$, i.e., the driving frequency matches the natural frequency. For small damping, this leads to a large amplitude, increasing the system’s energy significantly.
 
 ---
 
