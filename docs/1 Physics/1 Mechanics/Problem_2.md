@@ -6,11 +6,11 @@ $$
 \frac{d^2\theta}{dt^2} + \frac{b}{m} \frac{d\theta}{dt} + \frac{g}{l} \sin \theta = A \cos(\omega t)
 $$
 Where:
-- $ \theta $: Angle of the pendulum from the vertical (in radians).
-- $ \frac{d^2\theta}{dt^2} $: Angular acceleration.
-- $ \frac{b}{m} \frac{d\theta}{dt} $: Damping term, proportional to angular velocity, where $ b $ is the damping coefficient and $ m $ is the mass.
-- $ \frac{g}{l} \sin \theta $: Restoring force due to gravity, where $ g $ is the gravitational acceleration and $ l $ is the length of the pendulum.
-- $ A \cos(\omega t) $: External periodic forcing with amplitude $ A $ and frequency $ \omega $.
+- $\theta$: Angle of the pendulum from the vertical (in radians).
+- $\frac{d^2\theta}{dt^2}$: Angular acceleration.
+- $\frac{b}{m}\frac{d\theta}{dt}$: Damping term, proportional to angular velocity, where $b$ is the damping coefficient and $ m $ is the mass.
+- $\frac{g}{l}\sin\theta$: Restoring force due to gravity, where $ g $ is the gravitational acceleration and $ l $ is the length of the pendulum.
+- $A\cos(\omega t)$: External periodic forcing with amplitude $ A $ and frequency $\omega$.
 
 This equation is nonlinear due to the $ \sin \theta $ term, but the task asks for an approximate solution for small angles.
 
@@ -26,8 +26,8 @@ $$
 \frac{d^2\theta}{dt^2} + \frac{b}{m} \frac{d\theta}{dt} + \frac{g}{l} \theta = A \cos(\omega t)
 $$
 Define:
-- $ \gamma = \frac{b}{m} $: Damping coefficient.
-- $ \omega_0^2 = \frac{g}{l} $, where $ \omega_0 = \sqrt{\frac{g}{l}} $ is the natural frequency of the undamped pendulum.
+- $\gamma = \frac{b}{m}$: Damping coefficient.
+- $\omega_0^2 = \frac{g}{l}$, where $\omega_0 = \sqrt{\frac{g}{l}}$ is the natural frequency of the undamped pendulum.
 
 The equation becomes:
 $$
@@ -45,7 +45,7 @@ The characteristic equation is:
 $$
 r^2 + \gamma r + \omega_0^2 = 0
 $$
-Solve for $ r $:
+Solve for $r$:
 $$
 r = \frac{-\gamma \pm \sqrt{\gamma^2 - 4 \omega_0^2}}{2}
 $$
@@ -79,8 +79,8 @@ $$
 \theta_p(t) = B \cos(\omega t) + C \sin(\omega t)
 $$
 Compute the derivatives:
-- $ \frac{d\theta_p}{dt} = -B \omega \sin(\omega t) + C \omega \cos(\omega t) $
-- $ \frac{d^2\theta_p}{dt^2} = -B \omega^2 \cos(\omega t) - C \omega^2 \sin(\omega t) $
+- $\frac{d\theta_p}{dt} = -B \omega \sin(\omega t) + C \omega \cos(\omega t)$
+- $\frac{d^2\theta_p}{dt^2} = -B \omega^2 \cos(\omega t) - C \omega^2 \sin(\omega t)$
 
 Substitute into the equation:
 $$
@@ -172,25 +172,25 @@ $$
 $$
 
 **Step 2: Small-Angle Approximation**
-For small angles, $ \sin \theta \approx \theta $, so:
+For small angles, $\sin \theta \approx \theta$, so:
 $$
 \frac{d^2\theta}{dt^2} + \gamma \frac{d\theta}{dt} + \omega_0^2 \theta = A \cos(\omega t)
 $$
-where $ \gamma = \frac{b}{m} $, $ \omega_0^2 = \frac{g}{l} $.
+where $\gamma = \frac{b}{m}$, $\omega_0^2 = \frac{g}{l}$.
 
 **Step 3: Homogeneous Solution**
-Characteristic equation: $ r^2 + \gamma r + \omega_0^2 = 0 $
-Roots: $ r = -\frac{\gamma}{2} \pm i \sqrt{\omega_0^2 - \left(\frac{\gamma}{2}\right)^2} $
-Damped frequency: $ \omega_d = \sqrt{\omega_0^2 - \left(\frac{\gamma}{2}\right)^2} $
-Solution: $ \theta_h(t) = e^{-\frac{\gamma}{2} t} \left( C_1 \cos(\omega_d t) + C_2 \sin(\omega_d t) \right) $
+Characteristic equation: $r^2 + \gamma r + \omega_0^2 = 0$
+Roots: $r = -\frac{\gamma}{2} \pm i \sqrt{\omega_0^2 - \left(\frac{\gamma}{2}\right)^2}$
+Damped frequency: $\omega_d = \sqrt{\omega_0^2 - \left(\frac{\gamma}{2}\right)^2}$
+Solution: $\theta_h(t) = e^{-\frac{\gamma}{2} t} \left( C_1 \cos(\omega_d t) + C_2 \sin(\omega_d t) \right)$
 
 **Step 4: Particular Solution**
-Assume: $ \theta_p(t) = B \cos(\omega t) + C \sin(\omega t) $
+Assume: $\theta_p(t) = B \cos(\omega t) + C \sin(\omega t)$
 Solve to find:
 $$
 B = \frac{A (\omega_0^2 - \omega^2)}{(\omega_0^2 - \omega^2)^2 + \gamma^2 \omega^2}, \quad C = \frac{A \gamma \omega}{(\omega_0^2 - \omega^2)^2 + \gamma^2 \omega^2}
 $$
-Amplitude-phase form: $ \theta_p(t) = D \cos(\omega t - \phi) $, where:
+Amplitude-phase form: $\theta_p(t) = D \cos(\omega t - \phi)$, where:
 $$
 D = \frac{A}{\sqrt{(\omega_0^2 - \omega^2)^2 + \gamma^2 \omega^2}}, \quad \tan \phi = \frac{\gamma \omega}{\omega_0^2 - \omega^2}
 $$
@@ -201,7 +201,7 @@ $$
 $$
 
 **Step 6: Resonance**
-Resonance occurs at $ \omega \approx \omega_0 $, maximizing the amplitude $ D $.
+Resonance occurs at $\omega \approx \omega_0$, maximizing the amplitude $D$.
 
 **Python Code: Forced Damped Pendulum Simulation**
 ``` py
@@ -276,7 +276,7 @@ plt.show()
 ---
 
 **Explanation of the Code**
-- **Parameters**: The script defines physical parameters like $ g $, $ l $, $ b $, $ m $, $ A $, and $ \omega $.
-- **ODE System**: The nonlinear equation is converted into a system of first-order ODEs: $ \frac{d\theta}{dt} = \dot{\theta} $, $ \frac{d\dot{\theta}}{dt} = -\gamma \dot{\theta} - \omega_0^2 \sin \theta + A \cos(\omega t) $.
+- **Parameters**: The script defines physical parameters like $g$, $l$, $b$, $m$, $A$, and $\omega$.
+- **ODE System**: The nonlinear equation is converted into a system of first-order ODEs: $\frac{d\theta}{dt} = \dot{\theta}$, $\frac{d\dot{\theta}}{dt} = -\gamma \dot{\theta} - \omega_0^2 \sin \theta + A \cos(\omega t)$.
 - **Numerical Solution**: The `odeint` function from SciPy uses an adaptive method (similar to Runge-Kutta) to solve the system.
-- **Plots**: The script generates three plots: $ \theta(t) $, $ \dot{\theta}(t) $, and a phase portrait ($ \dot{\theta} $ vs. $ \theta $).
+- **Plots**: The script generates three plots: $\theta(t)$, $\dot{\theta}(t)$, and a phase portrait ($\dot{\theta}$ vs. $\theta$).
