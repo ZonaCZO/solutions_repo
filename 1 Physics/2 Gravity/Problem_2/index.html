@@ -58,6 +58,8 @@
 </li>
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#detailed-solution-in-a-single-black-box">Detailed Solution in a Single Black Box</a>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Problem_3/">Problem 3</a>
@@ -171,7 +173,189 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-2">Problem 2</h1>
+<h3 id="problem-2-escape-velocities-and-cosmic-velocities">Problem 2: Escape Velocities and Cosmic Velocities</h3>
+<h4 id="detailed-solution-in-a-single-black-box">Detailed Solution in a Single Black Box</h4>
+<p><strong>Detailed Step-by-Step Solution: Escape Velocities and Cosmic Velocities</strong></p>
+<p><strong>Step 1: Define the First, Second, and Third Cosmic Velocities with Physical Meaning</strong></p>
+<ul>
+<li><strong>First Cosmic Velocity (Orbital Velocity)</strong>: This is the speed required for an object to maintain a circular orbit around a celestial body at a radius <span class="arithmatex">\(r\)</span> from the body’s center. It balances the gravitational force with the centripetal force needed for circular motion. For a low orbit (just above the surface), <span class="arithmatex">\(r\)</span> is approximately the body’s radius <span class="arithmatex">\(R\)</span>. This velocity is crucial for satellites to achieve stable orbits, such as those in low Earth orbit (LEO).  </li>
+<li><strong>Second Cosmic Velocity (Escape Velocity)</strong>: This is the minimum speed an object needs to escape the gravitational pull of a celestial body, reaching infinity with zero residual velocity. It’s derived using energy conservation, ensuring the object’s kinetic energy overcomes the gravitational potential energy. This velocity is independent of the launch direction (ignoring atmospheric effects) and is essential for missions leaving a planet, such as lunar or interplanetary travel.  </li>
+<li><strong>Third Cosmic Velocity (Interstellar Escape Velocity)</strong>: This is the speed required to escape the gravitational influence of a star system (e.g., the Solar System) and travel into interstellar space. It assumes the object starts from an orbit around the star (e.g., Earth’s orbit around the Sun). The object must first escape the planet’s gravity and then achieve the additional speed to escape the star’s gravity from that orbital position.</li>
+</ul>
+<p><strong>Step 2: Mathematical Derivations and Parameters</strong></p>
+<p><strong>2.1 First Cosmic Velocity (Circular Orbit)</strong><br/>
+Consider an object of mass <span class="arithmatex">\(m\)</span> in a circular orbit around a celestial body of mass <span class="arithmatex">\(M\)</span> at radius <span class="arithmatex">\(r\)</span> (distance from the center). The gravitational force provides the centripetal force required for circular motion. The gravitational force is:
+$$
+F_{\text{grav}} = \frac{G M m}{r^2}
+$$
+where <span class="arithmatex">\(G\)</span> is the gravitational constant, <span class="arithmatex">\(M\)</span> is the mass of the celestial body, and <span class="arithmatex">\(m\)</span> is the mass of the orbiting object. The centripetal force required for circular motion at speed <span class="arithmatex">\(v_1\)</span> is:
+$$
+F_{\text{centripetal}} = \frac{m v_1^2}{r}
+$$
+Equate the two forces:
+$$
+\frac{G M m}{r^2} = \frac{m v_1^2}{r}
+$$
+Cancel <span class="arithmatex">\(m\)</span> (since <span class="arithmatex">\(m \neq 0\)</span>):
+$$
+\frac{G M}{r^2} = \frac{v_1^2}{r}
+$$
+Multiply both sides by <span class="arithmatex">\(r\)</span> to eliminate the denominator on the right:
+$$
+\frac{G M}{r} = v_1^2
+$$
+Solve for <span class="arithmatex">\(v_1\)</span>:
+$$
+v_1 = \sqrt{\frac{G M}{r}}
+$$
+For an orbit just above the surface, <span class="arithmatex">\(r \approx R\)</span>, where <span class="arithmatex">\(R\)</span> is the radius of the celestial body. Thus, the first cosmic velocity at the surface is:
+$$
+v_1 = \sqrt{\frac{G M}{R}}
+$$</p>
+<p><strong>2.2 Second Cosmic Velocity (Escape Velocity)</strong><br/>
+To escape the gravitational pull, the object’s kinetic energy must equal the gravitational potential energy required to reach infinity. The gravitational potential energy at distance <span class="arithmatex">\(r\)</span> from the center is:
+$$
+U = -\frac{G M m}{r}
+$$
+At infinity, the potential energy is zero (<span class="arithmatex">\(U = 0\)</span>). The kinetic energy of the object at launch is:
+$$
+K = \frac{1}{2} m v_2^2
+$$
+Using conservation of mechanical energy (initial energy at <span class="arithmatex">\(r\)</span> equals energy at infinity):
+$$
+K + U = 0 \quad (\text{at infinity, total energy is zero for minimum escape})
+$$
+$$
+\frac{1}{2} m v_2^2 - \frac{G M m}{r} = 0
+$$
+Cancel <span class="arithmatex">\(m\)</span>:
+$$
+\frac{1}{2} v_2^2 = \frac{G M}{r}
+$$
+Multiply both sides by 2:
+$$
+v_2^2 = \frac{2 G M}{r}
+$$
+Solve for <span class="arithmatex">\(v_2\)</span>:
+$$
+v_2 = \sqrt{\frac{2 G M}{r}}
+$$
+At the surface (<span class="arithmatex">\(r = R\)</span>):
+$$
+v_2 = \sqrt{\frac{2 G M}{R}}
+$$
+Compare with the first cosmic velocity:
+$$
+v_2 = \sqrt{\frac{2 G M}{R}} = \sqrt{2} \sqrt{\frac{G M}{R}} = \sqrt{2} v_1
+$$
+The escape velocity is <span class="arithmatex">\(\sqrt{2}\)</span> times the orbital velocity at the same radius.</p>
+<p><strong>2.3 Third Cosmic Velocity (Escape from the Solar System)</strong><br/>
+This velocity is more complex, as it involves escaping the Sun’s gravity from Earth’s orbit around the Sun. First, the object must escape Earth’s gravity (using <span class="arithmatex">\(v_2\)</span>). Then, at Earth’s orbital distance from the Sun (<span class="arithmatex">\(r_{\text{Earth-Sun}} = 1\,\text{AU}\)</span>), it must achieve the escape velocity from the Sun’s gravitational field.</p>
+<ul>
+<li><strong>Escape Velocity from the Sun at Earth’s Orbit</strong>: The Sun’s mass is <span class="arithmatex">\(M_{\text{Sun}}\)</span>, and the distance is <span class="arithmatex">\(r_{\text{Earth-Sun}}\)</span>. Using the escape velocity formula:
+$$
+v_{\text{esc,Sun}} = \sqrt{\frac{2 G M_{\text{Sun}}}{r_{\text{Earth-Sun}}}}
+$$</li>
+<li><strong>Earth’s Orbital Velocity Around the Sun</strong>: Earth orbits the Sun in a nearly circular orbit, so its orbital velocity is the first cosmic velocity with respect to the Sun:
+$$
+v_{\text{Earth}} = \sqrt{\frac{G M_{\text{Sun}}}{r_{\text{Earth-Sun}}}}
+$$</li>
+<li><strong>Third Cosmic Velocity</strong>: The third cosmic velocity <span class="arithmatex">\(v_3\)</span> is the additional speed (relative to Earth) needed to increase the object’s speed from <span class="arithmatex">\(v_{\text{Earth}}\)</span> to <span class="arithmatex">\(v_{\text{esc,Sun}}\)</span>, assuming the object is launched in the direction of Earth’s orbital motion. The total speed required at Earth’s orbit is <span class="arithmatex">\(v_{\text{esc,Sun}}\)</span>, but Earth is already moving at <span class="arithmatex">\(v_{\text{Earth}}\)</span>, so:
+$$
+v_3 = v_{\text{esc,Sun}} - v_{\text{Earth}}
+$$
+Substitute the expressions:
+$$
+v_3 = \sqrt{\frac{2 G M_{\text{Sun}}}{r_{\text{Earth-Sun}}}} - \sqrt{\frac{G M_{\text{Sun}}}{r_{\text{Earth-Sun}}}}
+$$
+Factor out the common term:
+$$
+v_3 = \sqrt{\frac{G M_{\text{Sun}}}{r_{\text{Earth-Sun}}}} \left( \sqrt{2} - 1 \right)
+$$
+Since <span class="arithmatex">\(\sqrt{2} - 1 \approx 0.414\)</span>, the third cosmic velocity is approximately 41.4% of the Sun’s orbital velocity at Earth’s distance.</li>
+</ul>
+<p><strong>2.4 Parameters Affecting Velocities</strong><br/>
+- <span class="arithmatex">\(M\)</span>: Mass of the celestial body. A larger <span class="arithmatex">\(M\)</span> increases both <span class="arithmatex">\(v_1\)</span> and <span class="arithmatex">\(v_2\)</span> (since they are proportional to <span class="arithmatex">\(\sqrt{M}\)</span>).<br/>
+- <span class="arithmatex">\(r\)</span>: Distance from the center (or radius <span class="arithmatex">\(R\)</span> at the surface). A larger <span class="arithmatex">\(r\)</span> decreases the velocities (since they are proportional to <span class="arithmatex">\(\frac{1}{\sqrt{r}}\)</span>).<br/>
+- <span class="arithmatex">\(G\)</span>: Gravitational constant, a universal constant.<br/>
+For the third cosmic velocity, additional parameters are <span class="arithmatex">\(M_{\text{Sun}}\)</span> (Sun’s mass) and <span class="arithmatex">\(r_{\text{Earth-Sun}}\)</span> (Earth’s orbital radius), which affect the Sun’s escape velocity and Earth’s orbital velocity.</p>
+<p><strong>Step 3: Calculate and Visualize for Earth, Mars, and Jupiter</strong></p>
+<p>Let’s compute these velocities for Earth, Mars, and Jupiter using their masses and radii:<br/>
+- Earth: <span class="arithmatex">\(M = 5.972 \times 10^{24}\,\text{kg}\)</span>, <span class="arithmatex">\(R = 6371\,\text{km}\)</span><br/>
+- Mars: <span class="arithmatex">\(M = 6.417 \times 10^{23}\,\text{kg}\)</span>, <span class="arithmatex">\(R = 3390\,\text{km}\)</span><br/>
+- Jupiter: <span class="arithmatex">\(M = 1.898 \times 10^{27}\,\text{kg}\)</span>, <span class="arithmatex">\(R = 69911\,\text{km}\)</span><br/>
+- Sun: <span class="arithmatex">\(M_{\text{Sun}} = 1.989 \times 10^{30}\,\text{kg}\)</span>, <span class="arithmatex">\(r_{\text{Earth-Sun}} = 1.496 \times 10^{11}\,\text{m}\)</span> (1 AU)<br/>
+- <span class="arithmatex">\(G = 6.674 \times 10^{-11}\,\text{m}^3 \text{kg}^{-1} \text{s}^{-2}\)</span></p>
+<p><strong>Python Code: Cosmic Velocities Calculation and Visualization</strong></p>
+<pre><code class="language-py">import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+G = 6.674e-11  # Gravitational constant (m^3 kg^-1 s^-2)
+M_sun = 1.989e30  # Mass of the Sun (kg)
+r_earth_sun = 1.496e11  # Earth-Sun distance (m)
+
+# Celestial bodies data: [mass (kg), radius (m)]
+bodies = {
+    "Earth": [5.972e24, 6371e3],
+    "Mars": [6.417e23, 3390e3],
+    "Jupiter": [1.898e27, 69911e3]
+}
+
+# Calculate velocities
+v1_values = []  # First cosmic velocity (orbital)
+v2_values = []  # Second cosmic velocity (escape)
+v3_value = None  # Third cosmic velocity (from Earth’s orbit)
+
+for body, (M, R) in bodies.items():
+    # First cosmic velocity
+    v1 = np.sqrt(G * M / R) / 1000  # Convert to km/s
+    v1_values.append(v1)
+    # Second cosmic velocity
+    v2 = np.sqrt(2 * G * M / R) / 1000  # Convert to km/s
+    v2_values.append(v2)
+
+# Third cosmic velocity (from Earth’s orbit around the Sun)
+v_esc_sun = np.sqrt(2 * G * M_sun / r_earth_sun)  # Escape velocity from Sun at 1 AU
+v_earth = np.sqrt(G * M_sun / r_earth_sun)  # Earth’s orbital velocity
+v3 = (v_esc_sun - v_earth) / 1000  # Convert to km/s
+v3_value = v3
+
+# Visualization
+bodies_names = list(bodies.keys())
+x = np.arange(len(bodies_names))
+
+plt.figure(figsize=(10, 6))
+plt.bar(x - 0.2, v1_values, 0.4, label="First Cosmic Velocity (Orbital)", color="blue")
+plt.bar(x + 0.2, v2_values, 0.4, label="Second Cosmic Velocity (Escape)", color="orange")
+plt.axhline(y=v3_value, color="green", linestyle="--", label=f"Third Cosmic Velocity (from Earth) = {v3_value:.2f} km/s")
+plt.xticks(x, bodies_names)
+plt.xlabel("Celestial Bodies")
+plt.ylabel("Velocity (km/s)")
+plt.title("Cosmic Velocities for Different Celestial Bodies")
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# Print values
+print("Cosmic Velocities (km/s):")
+for i, body in enumerate(bodies_names):
+    print(f"{body}:")
+    print(f"  First Cosmic Velocity: {v1_values[i]:.2f} km/s")
+    print(f"  Second Cosmic Velocity: {v2_values[i]:.2f} km/s")
+print(f"Third Cosmic Velocity (from Earth’s orbit): {v3_value:.2f} km/s")
+</code></pre>
+<p><strong>Step 4: Importance in Space Exploration</strong></p>
+<ul>
+<li><strong>First Cosmic Velocity</strong>: Essential for launching satellites into orbit. For Earth, <span class="arithmatex">\(v_1 \approx 7.9\,\text{km/s}\)</span> at the surface, but at typical LEO altitudes (e.g., 400 km), it’s slightly less due to the larger <span class="arithmatex">\(r\)</span>. Satellites like those in the International Space Station (ISS) orbit at about 7.6 km/s.  </li>
+<li><strong>Second Cosmic Velocity</strong>: Critical for missions escaping a planet’s gravity. For Earth, <span class="arithmatex">\(v_2 \approx 11.2\,\text{km/s}\)</span>. The Apollo missions needed to exceed this to reach the Moon. For Jupiter, the high escape velocity (59.5 km/s) makes missions like Juno challenging, requiring significant fuel.  </li>
+<li><strong>Third Cosmic Velocity</strong>: Relevant for interstellar missions. For Earth, <span class="arithmatex">\(v_3 \approx 16.7\,\text{km/s}\)</span> (relative to Earth’s motion). Voyager 1 achieved this speed (with gravitational assists) to escape the Solar System, now traveling at about 17 km/s relative to the Sun. These velocities guide mission planning, fuel requirements, and trajectory design.</li>
+</ul>
+<p><strong>Explanation of the Code</strong>
+- <strong>Data</strong>: Defines the masses and radii of Earth, Mars, and Jupiter, along with Solar System parameters (<span class="arithmatex">\(M_{\text{Sun}}\)</span>, <span class="arithmatex">\(r_{\text{Earth-Sun}}\)</span>).<br/>
+- <strong>Calculations</strong>: Computes <span class="arithmatex">\(v_1\)</span> and <span class="arithmatex">\(v_2\)</span> for each body using the derived formulas, and <span class="arithmatex">\(v_3\)</span> for Earth’s orbit around the Sun. Velocities are converted to km/s for readability.<br/>
+- <strong>Visualization</strong>: A bar chart compares <span class="arithmatex">\(v_1\)</span> and <span class="arithmatex">\(v_2\)</span> for each body, with a horizontal line for <span class="arithmatex">\(v_3\)</span>.<br/>
+- <strong>Output</strong>: Prints the calculated velocities for clarity.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">

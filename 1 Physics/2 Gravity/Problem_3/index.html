@@ -60,6 +60,8 @@
 </li>
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 3</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#detailed-solution-in-a-single-black-box">Detailed Solution in a Single Black Box</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -171,7 +173,154 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-3">Problem 3</h1>
+<h3 id="problem-3-trajectories-of-a-freely-released-payload-near-earth">Problem 3: Trajectories of a Freely Released Payload Near Earth</h3>
+<h4 id="detailed-solution-in-a-single-black-box">Detailed Solution in a Single Black Box</h4>
+<p><strong>Detailed Step-by-Step Solution: Trajectories of a Freely Released Payload Near Earth</strong></p>
+<p><strong>Step 1: Analyze Possible Trajectories</strong></p>
+<p>When a payload is released from a moving rocket near Earth, its trajectory depends on its initial position, velocity, and Earth’s gravitational field. The trajectory type is determined by the specific energy <span class="arithmatex">\(\epsilon\)</span> and angular momentum, leading to three possible outcomes:<br/>
+- <strong>Elliptical Trajectory</strong>: The payload follows a bound orbit (ellipse or circle) if the total energy is negative.<br/>
+- <strong>Parabolic Trajectory</strong>: The payload escapes to infinity with zero velocity at infinity if the total energy is zero.<br/>
+- <strong>Hyperbolic Trajectory</strong>: The payload escapes to infinity with excess velocity if the total energy is positive.</p>
+<p>The specific energy <span class="arithmatex">\(\epsilon\)</span> (energy per unit mass) is:
+$$
+\epsilon = \frac{v^2}{2} - \frac{G M}{r}
+$$
+where <span class="arithmatex">\(v\)</span> is the payload’s speed, <span class="arithmatex">\(r\)</span> is its distance from Earth’s center, <span class="arithmatex">\(M\)</span> is Earth’s mass, and <span class="arithmatex">\(G\)</span> is the gravitational constant.<br/>
+- <span class="arithmatex">\(\epsilon &lt; 0\)</span>: Elliptical orbit (bound).<br/>
+- <span class="arithmatex">\(\epsilon = 0\)</span>: Parabolic trajectory (marginal escape).<br/>
+- <span class="arithmatex">\(\epsilon &gt; 0\)</span>: Hyperbolic trajectory (escape with excess speed).</p>
+<p>To derive this, consider the total mechanical energy per unit mass. The kinetic energy per unit mass is:
+$$
+\frac{1}{2} v^2
+$$
+The gravitational potential energy per unit mass at distance <span class="arithmatex">\(r\)</span> is:
+$$
+-\frac{G M}{r}
+$$
+Thus, the specific energy is:
+$$
+\epsilon = \frac{v^2}{2} - \frac{G M}{r}
+$$
+At the escape velocity, <span class="arithmatex">\(\epsilon = 0\)</span>, which gives:
+$$
+\frac{v^2}{2} = \frac{G M}{r} \quad \Rightarrow \quad v = \sqrt{\frac{2 G M}{r}}
+$$
+This matches the second cosmic velocity derived earlier, confirming that <span class="arithmatex">\(\epsilon = 0\)</span> corresponds to a parabolic trajectory.</p>
+<p><strong>Step 2: Numerical Analysis of the Payload’s Path</strong></p>
+<p>The motion is governed by Newton’s law of gravitation in vector form:
+$$
+\frac{d^2 \vec{r}}{dt^2} = -\frac{G M}{r^3} \vec{r}
+$$
+where <span class="arithmatex">\(\vec{r}\)</span> is the position vector from Earth’s center to the payload, and <span class="arithmatex">\(r = |\vec{r}|\)</span>. In Cartesian coordinates, <span class="arithmatex">\(\vec{r} = (x, y)\)</span> (assuming 2D motion in the orbital plane), so:
+$$
+r = \sqrt{x^2 + y^2}
+$$
+The acceleration components are:
+$$
+\frac{d^2 x}{dt^2} = -\frac{G M x}{r^3}, \quad \frac{d^2 y}{dt^2} = -\frac{G M y}{r^3}
+$$
+To solve numerically, convert this second-order system into a system of first-order ODEs. Define the state vector as <span class="arithmatex">\((x, y, v_x, v_y)\)</span>, where <span class="arithmatex">\(v_x = \frac{dx}{dt}\)</span> and <span class="arithmatex">\(v_y = \frac{dy}{dt}\)</span>. The system becomes:
+$$
+\frac{dx}{dt} = v_x, \quad \frac{dy}{dt} = v_y
+$$
+$$
+\frac{dv_x}{dt} = -\frac{G M x}{r^3}, \quad \frac{dv_y}{dt} = -\frac{G M y}{r^3}
+$$
+We’ll use the gravitational parameter <span class="arithmatex">\(\mu = G M\)</span> for numerical efficiency, where <span class="arithmatex">\(\mu\)</span> combines <span class="arithmatex">\(G\)</span> and <span class="arithmatex">\(M\)</span> into a single constant.</p>
+<p><strong>Step 3: Relate Trajectories to Orbital Scenarios</strong></p>
+<ul>
+<li><strong>Orbital Insertion</strong>: If the payload’s velocity matches the first cosmic velocity at its altitude, it enters a circular orbit. For example, at 400 km altitude, the circular velocity is:
+$$
+v_{\text{circular}} = \sqrt{\frac{\mu}{r}}
+$$
+If the velocity is less, the orbit becomes elliptical with the release point as the apogee. If greater but still <span class="arithmatex">\(\epsilon &lt; 0\)</span>, the orbit is elliptical with the release point as the perigee.  </li>
+<li><strong>Reentry</strong>: If the trajectory intersects Earth’s surface (or atmosphere), the payload reenters. For an elliptical orbit, if the perigee is below Earth’s surface (<span class="arithmatex">\(r_{\text{perigee}} &lt; R\)</span>), the payload will collide with Earth.  </li>
+<li><strong>Escape</strong>: If the velocity exceeds the escape velocity at that altitude:
+$$
+v_{\text{escape}} = \sqrt{\frac{2 \mu}{r}}
+$$
+the trajectory becomes parabolic (<span class="arithmatex">\(\epsilon = 0\)</span>) or hyperbolic (<span class="arithmatex">\(\epsilon &gt; 0\)</span>), and the payload escapes Earth’s gravity.</li>
+</ul>
+<p><strong>Step 4: Computational Tool to Simulate and Visualize</strong></p>
+<p>We’ll simulate the payload’s motion at an altitude of 400 km (typical for LEO) with initial velocities below, at, and above the circular velocity to observe different trajectories.</p>
+<p><strong>Python Code: Payload Trajectory Simulation</strong></p>
+<pre><code class="language-py">import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+# Constants
+G = 6.674e-11  # Gravitational constant (m^3 kg^-1 s^-2)
+M = 5.972e24  # Earth’s mass (kg)
+R = 6371e3  # Earth’s radius (m)
+mu = G * M  # Gravitational parameter (m^3 s^-2)
+
+# Initial conditions: Released at 400 km altitude
+h = 400e3  # Altitude (m)
+r0 = R + h  # Initial distance from Earth’s center (m)
+x0, y0 = r0, 0  # Start on x-axis
+v_circular = np.sqrt(mu / r0)  # Circular orbit velocity at this altitude
+v_escape = np.sqrt(2 * mu / r0)  # Escape velocity at this altitude
+
+# Test different initial velocities: below, at, and above circular velocity
+v0_factors = [0.8, 1.0, 1.2]  # Multipliers for circular velocity
+trajectories = []
+
+# Time array
+t = np.linspace(0, 7200, 1000)  # 2 hours
+
+# System of ODEs
+def payload_motion(state, t, mu):
+    x, y, vx, vy = state
+    r = np.sqrt(x**2 + y**2)
+    ax = -mu * x / r**3
+    ay = -mu * y / r**3
+    return [vx, vy, ax, ay]
+
+# Simulate for each initial velocity
+for factor in v0_factors:
+    v0 = factor * v_circular
+    state0 = [x0, y0, 0, v0]  # Initial velocity in y-direction (tangential)
+    solution = odeint(payload_motion, state0, t, args=(mu,))
+    trajectories.append(solution)
+
+# Plot trajectories
+plt.figure(figsize=(10, 8))
+for i, traj in enumerate(trajectories):
+    label = f"v0 = {v0_factors[i]*v_circular/1000:.1f} km/s"
+    plt.plot(traj[:, 0]/1000, traj[:, 1]/1000, label=label)
+
+# Plot Earth
+theta = np.linspace(0, 2*np.pi, 100)
+plt.plot(R/1000 * np.cos(theta), R/1000 * np.sin(theta), "b-", label="Earth")
+plt.xlabel("x (km)")
+plt.ylabel("y (km)")
+plt.title("Payload Trajectories Near Earth")
+plt.axis("equal")
+plt.grid(True)
+plt.legend()
+plt.show()
+
+# Calculate specific energy to classify trajectories
+print("Trajectory Classification:")
+print(f"Circular Velocity at {h/1000} km: {v_circular/1000:.1f} km/s")
+print(f"Escape Velocity at {h/1000} km: {v_escape/1000:.1f} km/s")
+for i, factor in enumerate(v0_factors):
+    v0 = factor * v_circular
+    r = r0
+    epsilon = v0**2 / 2 - mu / r
+    if epsilon &lt; 0:
+        traj_type = "Elliptical"
+    elif abs(epsilon) &lt; 1e-3:  # Small threshold for numerical precision
+        traj_type = "Parabolic"
+    else:
+        traj_type = "Hyperbolic"
+    print(f"v0 = {v0/1000:.1f} km/s: Energy = {epsilon:.2e} J/kg, Trajectory = {traj_type}")
+</code></pre>
+<p><strong>Explanation of the Code</strong>
+- <strong>Setup</strong>: The payload is released at 400 km altitude, where <span class="arithmatex">\(r = R + h\)</span>. The circular velocity <span class="arithmatex">\(v_{\text{circular}}\)</span> and escape velocity <span class="arithmatex">\(v_{\text{escape}}\)</span> are computed at this altitude. Initial velocities are set as 0.8, 1.0, and 1.2 times the circular velocity.<br/>
+- <strong>Simulation</strong>: The <code>odeint</code> function solves the system of ODEs, integrating over 2 hours to capture the trajectory shapes.<br/>
+- <strong>Visualization</strong>: Plots the trajectories in the x-y plane, with Earth shown for scale. The aspect ratio is set to equal to ensure accurate representation.<br/>
+- <strong>Classification</strong>: Computes the specific energy <span class="arithmatex">\(\epsilon\)</span> for each trajectory to classify it as elliptical, parabolic, or hyperbolic.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
