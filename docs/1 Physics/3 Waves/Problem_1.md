@@ -162,7 +162,7 @@ plt.show()
 
 **Step 6: Conclusions**  
 Interference patterns demonstrate how waves interact. Constructive interference creates regions of large oscillations, while destructive interference creates calm regions. These patterns depend on the positions of the sources, wavelength, and phase. In real life, such phenomena are important for studying waves (e.g., in optics, acoustics) and designing devices that use interference, such as antennas or sensors.
-```
+
 
 ---
 
