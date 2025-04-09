@@ -72,6 +72,16 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#explanation-of-problem-1-simulating-the-effects-of-the-lorentz-force">Explanation of Problem 1: Simulating the Effects of the Lorentz Force</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#main-topic-what-is-the-lorentz-force">Main Topic: What is the Lorentz Force?</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#what-are-we-trying-to-do">What Are We Trying to Do?</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#solution-for-problem-1-simulating-the-effects-of-the-lorentz-force">Solution for Problem 1: Simulating the Effects of the Lorentz Force</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,6 +182,147 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h3 id="explanation-of-problem-1-simulating-the-effects-of-the-lorentz-force">Explanation of Problem 1: Simulating the Effects of the Lorentz Force</h3>
+<h4 id="main-topic-what-is-the-lorentz-force">Main Topic: What is the Lorentz Force?</h4>
+<p>The Lorentz force is the force experienced by a charged particle moving in electric and magnetic fields. It plays a crucial role in many areas of physics, such as particle accelerators, astrophysics (e.g., auroras), and plasma physics. The force determines the motion of charged particles, leading to complex trajectories like spirals or circular paths, which we aim to simulate and visualize in this task.</p>
+<p><strong>Formula for the Lorentz Force:</strong><br/>
+The Lorentz force <span class="arithmatex">\(\vec{F}\)</span> acting on a charged particle is given by:<br/>
+$$
+\vec{F} = q \vec{E} + q (\vec{v} \times \vec{B})
+$$
+Let’s break down the variables and symbols:<br/>
+- <strong><span class="arithmatex">\(\vec{F}\)</span></strong> — The Lorentz force (in newtons, N). This is the total force acting on the particle.<br/>
+- <strong><span class="arithmatex">\(q\)</span></strong> — The charge of the particle (in coulombs, C). For example, an electron has a charge <span class="arithmatex">\(q = -1.602 \times 10^{-19} \, \text{C}\)</span>, while a proton has <span class="arithmatex">\(q = +1.602 \times 10^{-19} \, \text{C}\)</span>. The sign of <span class="arithmatex">\(q\)</span> determines the direction of the force.<br/>
+- <strong><span class="arithmatex">\(\vec{E}\)</span></strong> — The electric field (in volts per meter, V/m). It exerts a force on the particle in the direction of the field (if <span class="arithmatex">\(q\)</span> is positive) or opposite (if <span class="arithmatex">\(q\)</span> is negative).<br/>
+- <strong><span class="arithmatex">\(\vec{v}\)</span></strong> — The velocity of the particle (in meters per second, m/s). This is a vector describing the particle’s speed and direction.<br/>
+- <strong><span class="arithmatex">\(\vec{B}\)</span></strong> — The magnetic field (in tesla, T). It exerts a force perpendicular to both the particle’s velocity and the magnetic field direction.<br/>
+- <strong><span class="arithmatex">\(\vec{v} \times \vec{B}\)</span></strong> — The cross product of the velocity and magnetic field vectors. This results in a vector perpendicular to both <span class="arithmatex">\(\vec{v}\)</span> and <span class="arithmatex">\(\vec{B}\)</span>, and its magnitude is <span class="arithmatex">\(|\vec{v}||\vec{B}|\sin\theta\)</span>, where <span class="arithmatex">\(\theta\)</span> is the angle between <span class="arithmatex">\(\vec{v}\)</span> and <span class="arithmatex">\(\vec{B}\)</span>.<br/>
+- <strong><span class="arithmatex">\(q \vec{E}\)</span></strong> — The electric force component, which accelerates the particle along the direction of <span class="arithmatex">\(\vec{E}\)</span>.<br/>
+- <strong><span class="arithmatex">\(q (\vec{v} \times \vec{B})\)</span></strong> — The magnetic force component, which causes the particle to move in a circular or helical path if <span class="arithmatex">\(\vec{v}\)</span> is perpendicular to <span class="arithmatex">\(\vec{B}\)</span>.</p>
+<p><strong>Physical Meaning:</strong><br/>
+- The electric force <span class="arithmatex">\(q \vec{E}\)</span> accelerates the particle in a straight line along the field.<br/>
+- The magnetic force <span class="arithmatex">\(q (\vec{v} \times \vec{B})\)</span> is always perpendicular to the particle’s velocity, so it doesn’t change the particle’s speed (only its direction), leading to curved trajectories like circles or helices.<br/>
+- Together, these forces create complex paths, such as spirals in combined electric and magnetic fields.</p>
+<p><strong>Applications:</strong><br/>
+- <strong>Particle Accelerators</strong>: The Lorentz force guides charged particles in accelerators like the Large Hadron Collider (LHC).<br/>
+- <strong>Astrophysics</strong>: It explains the motion of charged particles in Earth’s magnetic field, creating the aurora.<br/>
+- <strong>Plasma Physics</strong>: It governs the behavior of plasmas in fusion reactors.</p>
+<h4 id="what-are-we-trying-to-do">What Are We Trying to Do?</h4>
+<p>The task asks us to:<br/>
+1. Identify systems where the Lorentz force is important (e.g., particle accelerators).<br/>
+2. Simulate the motion of a charged particle in uniform electric and magnetic fields, considering different field configurations.<br/>
+3. Explore how parameters like field strengths, particle charge, mass, and velocity affect the trajectory.<br/>
+4. Visualize the particle’s path in 2D and 3D to highlight phenomena like the Larmor radius and drift velocity.</p>
+<hr/>
+<h3 id="solution-for-problem-1-simulating-the-effects-of-the-lorentz-force">Solution for Problem 1: Simulating the Effects of the Lorentz Force</h3>
+<p><strong>Step-by-Step Solution: Simulating the Effects of the Lorentz Force</strong></p>
+<p><strong>Step 1: Identify Applications of the Lorentz Force</strong></p>
+<p>The Lorentz force is critical in:<br/>
+- <strong>Particle Accelerators</strong>: In cyclotrons, the magnetic field causes particles to move in circular paths while the electric field accelerates them.<br/>
+- <strong>Astrophysics</strong>: Charged particles from the solar wind spiral along Earth’s magnetic field lines, creating auroras.<br/>
+- <strong>Plasma Confinement</strong>: In fusion reactors, magnetic fields confine plasma by forcing charged particles into helical paths.</p>
+<p><strong>Step 2: Simulate Particle Motion</strong></p>
+<p>We’ll simulate the motion of a charged particle in combined electric and magnetic fields using Newton’s second law:<br/>
+$$
+\vec{F} = m \vec{a} = m \frac{d\vec{v}}{dt} = q \vec{E} + q (\vec{v} \times \vec{B})
+$$
+Divide by mass <span class="arithmatex">\(m\)</span>:<br/>
+$$
+\frac{d\vec{v}}{dt} = \frac{q}{m} \vec{E} + \frac{q}{m} (\vec{v} \times \vec{B})
+$$
+The position is updated as:<br/>
+$$
+\frac{d\vec{r}}{dt} = \vec{v}
+$$
+where <span class="arithmatex">\(\vec{r} = (x, y, z)\)</span> and <span class="arithmatex">\(\vec{v} = (v_x, v_y, v_z)\)</span>.  </p>
+<p><strong>Scenario</strong>:<br/>
+- <strong>Electric Field</strong>: <span class="arithmatex">\(\vec{E} = (0, E_y, 0)\)</span> (along the y-axis).<br/>
+- <strong>Magnetic Field</strong>: <span class="arithmatex">\(\vec{B} = (0, 0, B_z)\)</span> (along the z-axis).<br/>
+- <strong>Particle</strong>: A proton with charge <span class="arithmatex">\(q = 1.602 \times 10^{-19} \, \text{C}\)</span>, mass <span class="arithmatex">\(m = 1.673 \times 10^{-27} \, \text{kg}\)</span>.<br/>
+- <strong>Initial Velocity</strong>: <span class="arithmatex">\(\vec{v}_0 = (v_{x0}, 0, 0)\)</span> (along the x-axis).  </p>
+<p>This setup creates a classic <span class="arithmatex">\(\vec{E} \times \vec{B}\)</span> drift, where the particle spirals due to the magnetic field and drifts due to the electric field.</p>
+<p><strong>Step 3: Parameter Exploration</strong></p>
+<ul>
+<li><strong>Field Strengths</strong>: Set <span class="arithmatex">\(E_y = 1000 \, \text{V/m}\)</span>, <span class="arithmatex">\(B_z = 0.1 \, \text{T}\)</span>.  </li>
+<li><strong>Initial Velocity</strong>: <span class="arithmatex">\(v_{x0} = 1 \times 10^5 \, \text{m/s}\)</span>.  </li>
+<li><strong>Charge and Mass</strong>: Use proton values.  </li>
+</ul>
+<p><strong>Larmor Radius</strong>: The radius of the circular motion due to the magnetic field is:<br/>
+$$
+r_L = \frac{m v_\perp}{|q| B}
+$$
+where <span class="arithmatex">\(v_\perp\)</span> is the velocity component perpendicular to <span class="arithmatex">\(\vec{B}\)</span>. Here, <span class="arithmatex">\(v_\perp = v_{x0}\)</span>, so:<br/>
+$$
+r_L = \frac{(1.673 \times 10^{-27}) \times (1 \times 10^5)}{(1.602 \times 10^{-19}) \times 0.1} \approx 0.01 \, \text{m}
+$$
+<strong>Drift Velocity</strong>: The <span class="arithmatex">\(\vec{E} \times \vec{B}\)</span> drift velocity is:<br/>
+$$
+v_{\text{drift}} = \frac{|\vec{E}|}{|\vec{B}|} = \frac{1000}{0.1} = 10000 \, \text{m/s} \quad (\text{in the x-direction})
+$$</p>
+<p><strong>Step 4: Visualization</strong></p>
+<p>We’ll use Python to solve the equations of motion numerically and plot the trajectory in 3D.</p>
+<p><strong>Python Code: Simulating Lorentz Force Effects</strong></p>
+<pre><code class="language-py">import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+# Constants
+q = 1.602e-19  # Charge of a proton (C)
+m = 1.673e-27  # Mass of a proton (kg)
+E = np.array([0, 1000, 0])  # Electric field (V/m)
+B = np.array([0, 0, 0.1])  # Magnetic field (T)
+v0 = np.array([1e5, 0, 0])  # Initial velocity (m/s)
+
+# System of ODEs: state = [x, y, z, vx, vy, vz]
+def lorentz_motion(state, t, q, m, E, B):
+    x, y, z, vx, vy, vz = state
+    v = np.array([vx, vy, vz])
+    # Acceleration: a = (q/m) * (E + v x B)
+    a = (q / m) * (E + np.cross(v, B))
+    return [vx, vy, vz, a[0], a[1], a[2]]
+
+# Time array
+t = np.linspace(0, 1e-4, 1000)
+
+# Initial conditions: [x0, y0, z0, vx0, vy0, vz0]
+state0 = [0, 0, 0, v0[0], v0[1], v0[2]]
+
+# Solve ODE
+solution = odeint(lorentz_motion, state0, t, args=(q, m, E, B))
+x, y, z = solution[:, 0], solution[:, 1], solution[:, 2]
+
+# Plot 3D trajectory
+fig = plt.figure(figsize=(10, 8))
+ax = fig.add_subplot(111, projection='3d')
+ax.plot(x, y, z, label='Particle Trajectory')
+ax.set_xlabel('x (m)')
+ax.set_ylabel('y (m)')
+ax.set_zlabel('z (m)')
+ax.set_title('Particle Trajectory under Lorentz Force')
+ax.legend()
+plt.show()
+
+# Plot 2D projection (x-y plane)
+plt.figure(figsize=(8, 6))
+plt.plot(x, y, label='x-y Projection')
+plt.xlabel('x (m)')
+plt.ylabel('y (m)')
+plt.title('2D Projection of Particle Trajectory')
+plt.grid(True)
+plt.legend()
+plt.axis('equal')
+plt.show()
+</code></pre>
+<p><strong>Explanation of the Code</strong><br/>
+- <strong>Parameters</strong>: We define the charge <span class="arithmatex">\(q\)</span>, mass <span class="arithmatex">\(m\)</span>, electric field <span class="arithmatex">\(\vec{E}\)</span>, magnetic field <span class="arithmatex">\(\vec{B}\)</span>, and initial velocity <span class="arithmatex">\(\vec{v}_0\)</span> for a proton.<br/>
+- <strong>ODE System</strong>: The function <code>lorentz_motion</code> computes the derivatives for position and velocity based on the Lorentz force.<br/>
+- <strong>Simulation</strong>: We use <code>odeint</code> to solve the system over a time interval of <span class="arithmatex">\(10^{-4}\)</span> seconds.<br/>
+- <strong>Visualization</strong>: We plot the 3D trajectory and a 2D projection to observe the spiral motion and drift.</p>
+<p><strong>Step 5: Analysis</strong><br/>
+- The particle spirals around the magnetic field lines (z-axis) with a Larmor radius of about 0.01 m.<br/>
+- The electric field causes a drift in the x-direction, consistent with the calculated drift velocity of 10,000 m/s.<br/>
+- Changing <span class="arithmatex">\(B_z\)</span> would alter the Larmor radius (larger <span class="arithmatex">\(B\)</span> means a tighter spiral). Increasing <span class="arithmatex">\(E_y\)</span> would increase the drift speed.
+```</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">

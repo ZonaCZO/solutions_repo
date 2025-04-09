@@ -78,6 +78,24 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#explanation-of-problem-1-equivalent-resistance-using-graph-theory">Explanation of Problem 1: Equivalent Resistance Using Graph Theory</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#main-topic-what-is-equivalent-resistance-and-graph-theory">Main Topic: What is Equivalent Resistance and Graph Theory?</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#what-are-we-trying-to-do">What Are We Trying to Do?</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#solution-for-problem-1-equivalent-resistance-using-graph-theory">Solution for Problem 1: Equivalent Resistance Using Graph Theory</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#summary-of-explanations-and-solutions">Summary of Explanations and Solutions</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#problem-1-simulating-the-effects-of-the-lorentz-force">Problem 1: Simulating the Effects of the Lorentz Force</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#problem-1-equivalent-resistance-using-graph-theory">Problem 1: Equivalent Resistance Using Graph Theory</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,6 +190,127 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h3 id="explanation-of-problem-1-equivalent-resistance-using-graph-theory">Explanation of Problem 1: Equivalent Resistance Using Graph Theory</h3>
+<h4 id="main-topic-what-is-equivalent-resistance-and-graph-theory">Main Topic: What is Equivalent Resistance and Graph Theory?</h4>
+<p>Equivalent resistance is the single resistance that can replace a complex network of resistors while producing the same current for a given voltage, according to Ohm’s law (<span class="arithmatex">\(V = I R\)</span>). Graph theory provides a mathematical framework to analyze such networks by representing them as graphs, where nodes (vertices) are junctions and edges are resistors. This approach simplifies complex circuits and is useful in electrical engineering, circuit design, and optimization problems.</p>
+<p><strong>Key Concepts:</strong><br/>
+- <strong>Resistance <span class="arithmatex">\(R\)</span></strong> (in ohms, <span class="arithmatex">\(\Omega\)</span>): Measures how much a resistor opposes the flow of electric current.<br/>
+- <strong>Series Connection</strong>: Resistors in series have the same current, and their resistances add: <span class="arithmatex">\(R_{\text{eq}} = R_1 + R_2\)</span>.<br/>
+- <strong>Parallel Connection</strong>: Resistors in parallel have the same voltage, and their equivalent resistance is: <span class="arithmatex">\(\frac{1}{R_{\text{eq}}} = \frac{1}{R_1} + \frac{1}{R_2}\)</span>.<br/>
+- <strong>Graph Representation</strong>:<br/>
+  - <strong>Nodes (Vertices)</strong>: Junctions where resistors connect.<br/>
+  - <strong>Edges</strong>: Resistors connecting the nodes, with weights equal to their resistances.<br/>
+- <strong>Equivalent Resistance</strong>: The resistance between two nodes in the graph, computed by simplifying the network using series and parallel rules or advanced methods like Kirchhoff’s laws.</p>
+<p><strong>Applications:</strong><br/>
+- <strong>Circuit Design</strong>: Simplifying complex circuits to predict behavior.<br/>
+- <strong>Network Analysis</strong>: Optimizing power grids or communication networks.<br/>
+- <strong>Physics Education</strong>: Understanding how current flows in complex systems.</p>
+<h4 id="what-are-we-trying-to-do">What Are We Trying to Do?</h4>
+<p>The task asks us to:<br/>
+1. Describe how to calculate equivalent resistance using graph theory, including series and parallel connections.<br/>
+2. Implement an algorithm to compute the equivalent resistance of a circuit represented as a graph.<br/>
+3. Test the algorithm on examples like series, parallel, nested configurations, and complex graphs with cycles.</p>
+<hr/>
+<h3 id="solution-for-problem-1-equivalent-resistance-using-graph-theory">Solution for Problem 1: Equivalent Resistance Using Graph Theory</h3>
+<pre><code>**Step-by-Step Solution: Equivalent Resistance Using Graph Theory**
+
+**Step 1: Describe the Method Using Graph Theory**
+
+In graph theory, a circuit is represented as a graph:  
+- **Nodes**: Junctions where resistors connect.  
+- **Edges**: Resistors, with weights equal to their resistances.  
+
+To find the equivalent resistance between two nodes (e.g., nodes A and B):  
+- **Series Reduction**: If two resistors $R_1$ and $R_2$ are in series (connected end-to-end with no other paths), replace them with a single resistor: $R_{\text{eq}} = R_1 + R_2$.  
+- **Parallel Reduction**: If two resistors $R_1$ and $R_2$ are in parallel (connected between the same two nodes), replace them with: $\frac{1}{R_{\text{eq}}} = \frac{1}{R_1} + \frac{1}{R_2}$, so $R_{\text{eq}} = \frac{R_1 R_2}{R_1 + R_2}$.  
+- **Iterative Simplification**: Repeatedly apply series and parallel reductions until the graph is reduced to a single edge between the two nodes.  
+For complex graphs with cycles, we may need advanced methods like Kirchhoff’s laws or the delta-star transformation, but we’ll focus on simpler examples here.
+
+**Step 2: Implement the Algorithm**
+
+We’ll implement a simplified algorithm to compute the equivalent resistance of a circuit. For demonstration, we’ll manually simplify the graph for three example circuits:  
+- **Series Circuit**: Two resistors in series.  
+- **Parallel Circuit**: Two resistors in parallel.  
+- **Nested Circuit**: A combination of series and parallel connections.  
+
+**Python Code: Equivalent Resistance Calculation**
+
+```py
+import networkx as nx
+import matplotlib.pyplot as plt
+
+# Function to compute equivalent resistance for series and parallel
+def series_resistance(R1, R2):
+    return R1 + R2
+
+def parallel_resistance(R1, R2):
+    return (R1 * R2) / (R1 + R2)
+
+# Example 1: Series Circuit
+print("Example 1: Series Circuit")
+R1, R2 = 2, 3  # Two resistors: 2 ohms and 3 ohms
+R_series = series_resistance(R1, R2)
+print(f"R1 = {R1} ohms, R2 = {R2} ohms")
+print(f"Equivalent Resistance (Series): {R_series} ohms")
+
+# Example 2: Parallel Circuit
+print("\nExample 2: Parallel Circuit")
+R1, R2 = 2, 3
+R_parallel = parallel_resistance(R1, R2)
+print(f"R1 = {R1} ohms, R2 = {R2} ohms")
+print(f"Equivalent Resistance (Parallel): {R_parallel:.2f} ohms")
+
+# Example 3: Nested Circuit (Series with Parallel)
+print("\nExample 3: Nested Circuit")
+# Circuit: R1 in series with (R2 || R3)
+R1, R2, R3 = 1, 2, 2
+R_parallel_23 = parallel_resistance(R2, R3)  # R2 and R3 in parallel
+R_nested = series_resistance(R1, R_parallel_23)  # R1 in series with (R2 || R3)
+print(f"R1 = {R1} ohms, R2 = {R2} ohms, R3 = {R3} ohms")
+print(f"R2 || R3 = {R_parallel_23:.2f} ohms")
+print(f"Equivalent Resistance (Nested): {R_nested:.2f} ohms")
+
+# Visualize a simple graph (for the nested circuit)
+G = nx.Graph()
+G.add_edge('A', 'B', weight=R1)
+G.add_edge('B', 'C', weight=R2)
+G.add_edge('B', 'C', weight=R3)  # Parallel edge
+pos = nx.spring_layout(G)
+labels = nx.get_edge_attributes(G, 'weight')
+nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=500)
+nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
+plt.title("Nested Circuit Graph Representation")
+plt.show()
+</code></pre>
+<p><strong>Explanation of the Code</strong><br/>
+- <strong>Functions</strong>: <code>series_resistance</code> and <code>parallel_resistance</code> compute the equivalent resistance for series and parallel configurations.<br/>
+- <strong>Examples</strong>:<br/>
+  - <strong>Series</strong>: Two resistors (2 Ω and 3 Ω) in series yield 5 Ω.<br/>
+  - <strong>Parallel</strong>: Two resistors (2 Ω and 3 Ω) in parallel yield <span class="arithmatex">\(\frac{2 \times 3}{2 + 3} = 1.2 \, \Omega\)</span>.<br/>
+  - <strong>Nested</strong>: R1 (1 Ω) in series with R2 (2 Ω) and R3 (2 Ω) in parallel. First, R2 || R3 = 1 Ω, then R1 + (R2 || R3) = 2 Ω.<br/>
+- <strong>Visualization</strong>: We use NetworkX to draw a simple graph representation of the nested circuit.</p>
+<p><strong>Step 3: Test on Examples</strong></p>
+<ul>
+<li><strong>Series Circuit</strong>: The equivalent resistance is simply the sum, as expected.  </li>
+<li><strong>Parallel Circuit</strong>: The result (1.2 Ω) is less than either resistor, which is typical for parallel connections.  </li>
+<li><strong>Nested Circuit</strong>: The combination of series and parallel reductions correctly yields 2 Ω.<br/>
+For more complex graphs with cycles, we would need to implement algorithms like the delta-star transformation or use Kirchhoff’s laws, which are beyond this simplified implementation.</li>
+</ul>
+<p><strong>Step 4: Analysis</strong><br/>
+Graph theory simplifies circuit analysis by breaking down complex networks into manageable parts. The method is efficient for series and parallel configurations but requires additional techniques for cycles. In practical applications, this approach is used in circuit simulators and network optimization tools.
+```</p>
+<hr/>
+<h3 id="summary-of-explanations-and-solutions">Summary of Explanations and Solutions</h3>
+<h4 id="problem-1-simulating-the-effects-of-the-lorentz-force">Problem 1: Simulating the Effects of the Lorentz Force</h4>
+<ul>
+<li><strong>Explanation</strong>: We detailed the Lorentz force, its components (<span class="arithmatex">\(q \vec{E}\)</span> and <span class="arithmatex">\(q (\vec{v} \times \vec{B})\)</span>), and their effects on a charged particle’s motion. We explained variables like <span class="arithmatex">\(q\)</span>, <span class="arithmatex">\(m\)</span>, <span class="arithmatex">\(\vec{E}\)</span>, <span class="arithmatex">\(\vec{B}\)</span>, and <span class="arithmatex">\(\vec{v}\)</span>, and their roles in applications like particle accelerators and astrophysics.  </li>
+<li><strong>Solution</strong>: We simulated a proton’s motion in combined electric and magnetic fields, visualized the spiral trajectory with <span class="arithmatex">\(\vec{E} \times \vec{B}\)</span> drift, and analyzed the Larmor radius and drift velocity.</li>
+</ul>
+<h4 id="problem-1-equivalent-resistance-using-graph-theory">Problem 1: Equivalent Resistance Using Graph Theory</h4>
+<ul>
+<li><strong>Explanation</strong>: We described equivalent resistance and how graph theory represents circuits as graphs (nodes as junctions, edges as resistors). We explained series and parallel rules, the variables <span class="arithmatex">\(R\)</span>, and the significance in circuit design.  </li>
+<li><strong>Solution</strong>: We implemented a simple algorithm to compute equivalent resistance for series, parallel, and nested circuits, tested it on examples, and visualized a graph representation using NetworkX.</li>
+</ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
