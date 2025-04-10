@@ -154,6 +154,7 @@ plt.legend()
 plt.axis('equal')
 plt.show()
 ```
+![alt text](image.png)
 
 **Explanation of the Code**  
 - **Parameters**: We define the charge $q$, mass $m$, electric field $\vec{E}$, magnetic field $\vec{B}$, and initial velocity $\vec{v}_0$ for a proton.  

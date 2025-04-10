@@ -31,7 +31,7 @@ The task asks us to:
 
 ### Solution for Problem 1: Equivalent Resistance Using Graph Theory
 
-```
+
 **Step-by-Step Solution: Equivalent Resistance Using Graph Theory**
 
 **Step 1: Describe the Method Using Graph Theory**
@@ -102,6 +102,7 @@ nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
 plt.title("Nested Circuit Graph Representation")
 plt.show()
 ```
+![alt text](image.png)
 
 **Explanation of the Code**  
 - **Functions**: `series_resistance` and `parallel_resistance` compute the equivalent resistance for series and parallel configurations.  
