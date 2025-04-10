@@ -212,31 +212,23 @@
 3. Test the algorithm on examples like series, parallel, nested configurations, and complex graphs with cycles.</p>
 <hr/>
 <h3 id="solution-for-problem-1-equivalent-resistance-using-graph-theory">Solution for Problem 1: Equivalent Resistance Using Graph Theory</h3>
-<pre><code>**Step-by-Step Solution: Equivalent Resistance Using Graph Theory**
-
-**Step 1: Describe the Method Using Graph Theory**
-
-In graph theory, a circuit is represented as a graph:  
-- **Nodes**: Junctions where resistors connect.  
-- **Edges**: Resistors, with weights equal to their resistances.  
-
-To find the equivalent resistance between two nodes (e.g., nodes A and B):  
-- **Series Reduction**: If two resistors $R_1$ and $R_2$ are in series (connected end-to-end with no other paths), replace them with a single resistor: $R_{\text{eq}} = R_1 + R_2$.  
-- **Parallel Reduction**: If two resistors $R_1$ and $R_2$ are in parallel (connected between the same two nodes), replace them with: $\frac{1}{R_{\text{eq}}} = \frac{1}{R_1} + \frac{1}{R_2}$, so $R_{\text{eq}} = \frac{R_1 R_2}{R_1 + R_2}$.  
-- **Iterative Simplification**: Repeatedly apply series and parallel reductions until the graph is reduced to a single edge between the two nodes.  
-For complex graphs with cycles, we may need advanced methods like Kirchhoff’s laws or the delta-star transformation, but we’ll focus on simpler examples here.
-
-**Step 2: Implement the Algorithm**
-
-We’ll implement a simplified algorithm to compute the equivalent resistance of a circuit. For demonstration, we’ll manually simplify the graph for three example circuits:  
-- **Series Circuit**: Two resistors in series.  
-- **Parallel Circuit**: Two resistors in parallel.  
-- **Nested Circuit**: A combination of series and parallel connections.  
-
-**Python Code: Equivalent Resistance Calculation**
-
-```py
-import networkx as nx
+<p><strong>Step-by-Step Solution: Equivalent Resistance Using Graph Theory</strong></p>
+<p><strong>Step 1: Describe the Method Using Graph Theory</strong></p>
+<p>In graph theory, a circuit is represented as a graph:<br/>
+- <strong>Nodes</strong>: Junctions where resistors connect.<br/>
+- <strong>Edges</strong>: Resistors, with weights equal to their resistances.  </p>
+<p>To find the equivalent resistance between two nodes (e.g., nodes A and B):<br/>
+- <strong>Series Reduction</strong>: If two resistors <span class="arithmatex">\(R_1\)</span> and <span class="arithmatex">\(R_2\)</span> are in series (connected end-to-end with no other paths), replace them with a single resistor: <span class="arithmatex">\(R_{\text{eq}} = R_1 + R_2\)</span>.<br/>
+- <strong>Parallel Reduction</strong>: If two resistors <span class="arithmatex">\(R_1\)</span> and <span class="arithmatex">\(R_2\)</span> are in parallel (connected between the same two nodes), replace them with: <span class="arithmatex">\(\frac{1}{R_{\text{eq}}} = \frac{1}{R_1} + \frac{1}{R_2}\)</span>, so <span class="arithmatex">\(R_{\text{eq}} = \frac{R_1 R_2}{R_1 + R_2}\)</span>.<br/>
+- <strong>Iterative Simplification</strong>: Repeatedly apply series and parallel reductions until the graph is reduced to a single edge between the two nodes.<br/>
+For complex graphs with cycles, we may need advanced methods like Kirchhoff’s laws or the delta-star transformation, but we’ll focus on simpler examples here.</p>
+<p><strong>Step 2: Implement the Algorithm</strong></p>
+<p>We’ll implement a simplified algorithm to compute the equivalent resistance of a circuit. For demonstration, we’ll manually simplify the graph for three example circuits:<br/>
+- <strong>Series Circuit</strong>: Two resistors in series.<br/>
+- <strong>Parallel Circuit</strong>: Two resistors in parallel.<br/>
+- <strong>Nested Circuit</strong>: A combination of series and parallel connections.  </p>
+<p><strong>Python Code: Equivalent Resistance Calculation</strong></p>
+<pre><code class="language-py">import networkx as nx
 import matplotlib.pyplot as plt
 
 # Function to compute equivalent resistance for series and parallel
@@ -282,6 +274,7 @@ nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
 plt.title("Nested Circuit Graph Representation")
 plt.show()
 </code></pre>
+<p><img alt="alt text" src="../image.png"/></p>
 <p><strong>Explanation of the Code</strong><br/>
 - <strong>Functions</strong>: <code>series_resistance</code> and <code>parallel_resistance</code> compute the equivalent resistance for series and parallel configurations.<br/>
 - <strong>Examples</strong>:<br/>
