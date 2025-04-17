@@ -1,32 +1,66 @@
 # Problem 1
 ---
 
-### Problem 1: Exploring the Central Limit Theorem through Simulations
-
-#### Detailed Solution in a Single Black Box
-
-
 **Step-by-Step Solution: Exploring the Central Limit Theorem through Simulations**
 
 **Step 1: Simulating Sampling Distributions**
 
-The Central Limit Theorem (CLT) states that the distribution of sample means from any population approaches a normal distribution as the sample size $n$ increases, regardless of the population's distribution. We will simulate three types of population distributions:  
-- **Uniform Distribution**: Values between 0 and 1 with equal probability.  
-- **Exponential Distribution**: Values decay exponentially, with parameter $\lambda = 1$.  
-- **Binomial Distribution**: Number of successes in $n_{\text{trials}} = 10$ trials, with success probability $p = 0.5$.  
+The Central Limit Theorem (CLT) is a fundamental concept in statistics and probability theory. It states that the distribution of the sample means (i.e., the average of a sample) taken from any population will tend to follow a normal distribution as the sample size $n$ increases, regardless of the shape of the population distribution, provided the population has a finite mean and variance. Mathematically, if we take a sample of size $n$ from a population with mean $\mu$ and standard deviation $\sigma$, the distribution of the sample mean $\bar{X}$ will approximately follow a normal distribution with mean $\mu$ and standard deviation $\frac{\sigma}{\sqrt{n}}$ for large $n$:
 
-For each distribution:  
-1. Generate a population of 10,000 values.  
-2. Take samples of sizes $n = 5, 10, 30, 50$, with 1,000 samples for each $n$.  
-3. Compute the mean for each sample.
+$$
+\bar{X} \sim N\left(\mu, \frac{\sigma}{\sqrt{n}}\right)
+$$
+
+This property holds even if the population distribution is not normal (e.g., uniform, exponential, or binomial), making the CLT a powerful tool for statistical inference.
+
+To explore this theorem, we will simulate three types of population distributions with different shapes to demonstrate the CLT's universality:
+
+- **Uniform Distribution**: A continuous distribution where all values between a minimum (0) and maximum (1) are equally likely. The probability density function (PDF) is:
+  $$
+  f(x) = \begin{cases} 
+  1 & \text{for } 0 \leq x \leq 1 \\
+  0 & \text{otherwise}
+  \end{cases}
+  $$
+  The mean of a uniform distribution on $[0, 1]$ is $\mu = \frac{0 + 1}{2} = 0.5$, and the standard deviation is $\sigma = \frac{1 - 0}{\sqrt{12}} = \frac{1}{\sqrt{12}} \approx 0.2887$.
+
+- **Exponential Distribution**: A continuous distribution often used to model the time between events in a Poisson process (e.g., waiting times). Its PDF is:
+  $$
+  f(x) = \lambda e^{-\lambda x}, \quad x \geq 0
+  $$
+  We use $\lambda = 1$, so the mean is $\mu = \frac{1}{\lambda} = 1$, and the standard deviation is $\sigma = \frac{1}{\lambda} = 1$. This distribution is heavily right-skewed, meaning it has many small values and a long tail of larger values.
+
+- **Binomial Distribution**: A discrete distribution representing the number of successes in $n_{\text{trials}}$ independent trials, each with success probability $p$. The probability mass function (PMF) is:
+  $$
+  P(X = k) = \binom{n_{\text{trials}}}{k} p^k (1 - p)^{n_{\text{trials}} - k}
+  $$
+  We use $n_{\text{trials}} = 10$ and $p = 0.5$, so the mean is $\mu = n_{\text{trials}} \cdot p = 10 \cdot 0.5 = 5$, and the standard deviation is $\sigma = \sqrt{n_{\text{trials}} \cdot p \cdot (1 - p)} = \sqrt{10 \cdot 0.5 \cdot 0.5} = \sqrt{2.5} \approx 1.581$.
+
+For each of these distributions, we will perform the following steps:
+
+1. **Generate a Population**: Create a large population of 10,000 values to represent the "true" distribution. This large size ensures that our population is a good approximation of the theoretical distribution.
+   
+2. **Take Samples**: For each sample size $n \in \{5, 10, 30, 50\}$, draw 1,000 samples of size $n$ from the population. A sample of size $n$ means we randomly select $n$ values from the population (with replacement, to mimic independent sampling).
+
+3. **Compute Sample Means**: For each of the 1,000 samples, calculate the sample mean $\bar{x}$, defined as:
+   $$
+   \bar{x} = \frac{1}{n} \sum_{i=1}^n x_i
+   $$
+   where $x_i$ are the values in the sample. This gives us 1,000 sample means for each $n$.
+
+The goal is to observe how the distribution of these sample means approaches a normal distribution as $n$ increases, which is the core idea of the CLT.
 
 **Step 2: Sampling and Visualization**
 
-We will visualize the distribution of sample means using histograms to observe their convergence to a normal distribution as $n$ increases. The normal distribution has the probability density function:  
+To confirm the CLT, we will visualize the distribution of the sample means using histograms. A histogram shows the frequency of different values of the sample means, and we will overlay a kernel density estimate (KDE) to smooth the histogram and better visualize the shape of the distribution. According to the CLT, as $n$ increases, the histogram of sample means should resemble a normal distribution, which has the following probability density function (PDF):
+
 $$
 f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}
 $$
-where $\mu$ is the mean and $\sigma$ is the standard deviation.
+
+where $\mu$ is the mean of the sample means (which should equal the population mean $\mu$), and $\sigma$ is the standard deviation of the sample means (which should equal the population standard deviation divided by $\sqrt{n}$, i.e., $\frac{\sigma}{\sqrt{n}}$).
+
+We will create four subplots for each population (one for each sample size $n$), showing how the distribution of sample means changes as $n$ increases. The KDE curve on the histogram will help us visually compare the shape to a normal distribution.
 
 **Python Code: Simulation and Visualization of Sampling Distributions**
 
