@@ -86,6 +86,20 @@
 </li>
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#problem-2-estimating-pi-using-monte-carlo-methods">Problem 2: Estimating Pi Using Monte Carlo Methods</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#detailed-solution-in-a-single-black-box">Detailed Solution in a Single Black Box</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#explanation-of-the-solutions">Explanation of the Solutions</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#problem-1-exploring-the-central-limit-theorem-through-simulations">Problem 1: Exploring the Central Limit Theorem through Simulations</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#problem-2-estimating-pi-using-monte-carlo-methods_1">Problem 2: Estimating Pi Using Monte Carlo Methods</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,6 +186,137 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-2">Problem 2</h1>
+<h3 id="problem-2-estimating-pi-using-monte-carlo-methods">Problem 2: Estimating Pi Using Monte Carlo Methods</h3>
+<h4 id="detailed-solution-in-a-single-black-box">Detailed Solution in a Single Black Box</h4>
+<p><strong>Step-by-Step Solution: Estimating Pi Using Monte Carlo Methods</strong></p>
+<p><strong>Step 1: Theoretical Foundation</strong></p>
+<p>We will use two Monte Carlo methods to estimate <span class="arithmatex">\(\pi\)</span>:<br/>
+- <strong>Circle Method</strong>: Randomly scatter points in a square and count how many fall inside a circle.<br/>
+- <strong>Buffon's Needle Method</strong>: Randomly drop needles on a plane with parallel lines and count how many cross a line.  </p>
+<p><strong>1.1 Circle Method</strong><br/>
+Consider a square of side length 2 (from -1 to 1 on both axes) with an inscribed unit circle (radius <span class="arithmatex">\(r = 1\)</span>). The area of the circle is <span class="arithmatex">\(\pi r^2 = \pi \cdot 1^2 = \pi\)</span>, and the area of the square is <span class="arithmatex">\(2 \cdot 2 = 4\)</span>. The probability that a random point falls inside the circle is the ratio of the areas:<br/>
+$$
+P = \frac{\text{area of circle}}{\text{area of square}} = \frac{\pi}{4}
+$$
+Estimate of <span class="arithmatex">\(\pi\)</span>:<br/>
+$$
+\pi \approx 4 \cdot \frac{\text{number of points inside circle}}{\text{total number of points}}
+$$</p>
+<p><strong>1.2 Buffon's Needle Method</strong><br/>
+Drop a needle of length <span class="arithmatex">\(l\)</span> on a plane with parallel lines spaced <span class="arithmatex">\(d\)</span> apart. The probability that the needle crosses a line depends on <span class="arithmatex">\(l\)</span>, <span class="arithmatex">\(d\)</span>, and the angle of incidence <span class="arithmatex">\(\theta\)</span>. If <span class="arithmatex">\(l \leq d\)</span>, the probability of crossing is:<br/>
+$$
+P = \frac{2l}{\pi d}
+$$
+Estimate of <span class="arithmatex">\(\pi\)</span>:<br/>
+$$
+\pi \approx \frac{2l \cdot N_{\text{throws}}}{d \cdot N_{\text{crossings}}}
+$$</p>
+<p><strong>Step 2: Simulation</strong></p>
+<p>We will implement both methods:<br/>
+- For the circle method: Use <span class="arithmatex">\(N = 10,000\)</span> points.<br/>
+- For Buffon's Needle: Use <span class="arithmatex">\(N = 10,000\)</span> needle throws, with <span class="arithmatex">\(l = 1\)</span>, <span class="arithmatex">\(d = 1\)</span>.</p>
+<p><strong>Python Code: Estimating Pi with Monte Carlo Methods</strong></p>
+<pre><code class="language-py">import numpy as np
+import matplotlib.pyplot as plt
+
+# Circle Method
+np.random.seed(42)
+N_points = 10000  # Total number of points
+x = np.random.uniform(-1, 1, N_points)  # Random x-coordinates
+y = np.random.uniform(-1, 1, N_points)  # Random y-coordinates
+r = np.sqrt(x**2 + y**2)  # Distance from origin
+inside_circle = r &lt;= 1  # Points inside the circle
+pi_estimate_circle = 4 * np.sum(inside_circle) / N_points
+
+# Visualization of Circle Method
+plt.figure(figsize=(8, 8))
+plt.scatter(x[inside_circle], y[inside_circle], c='blue', s=1, label='Inside Circle')
+plt.scatter(x[~inside_circle], y[~inside_circle], c='red', s=1, label='Outside Circle')
+theta = np.linspace(0, 2*np.pi, 100)
+plt.plot(np.cos(theta), np.sin(theta), 'k-', label='Circle')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title(f'Circle Method: Estimated π = {pi_estimate_circle:.4f}')
+plt.legend()
+plt.axis('equal')
+plt.show()
+
+# Buffon's Needle Method
+N_throws = 10000  # Number of needle throws
+l = 1.0  # Needle length
+d = 1.0  # Distance between lines
+x_center = np.random.uniform(0, d, N_throws)  # Position of needle center
+theta = np.random.uniform(0, np.pi, N_throws)  # Angle of needle
+crossings = (x_center + (l/2) * np.sin(theta) &gt;= d) | (x_center - (l/2) * np.sin(theta) &lt;= 0)
+num_crossings = np.sum(crossings)
+pi_estimate_buffon = (2 * l * N_throws) / (d * num_crossings) if num_crossings &gt; 0 else 0
+
+# Visualization of Buffon's Needle (first 50 needles)
+plt.figure(figsize=(10, 6))
+for i in range(50):
+    xc = x_center[i]
+    t = theta[i]
+    x1 = xc - (l/2) * np.cos(t)
+    x2 = xc + (l/2) * np.cos(t)
+    y1 = i - (l/2) * np.sin(t)
+    y2 = i + (l/2) * np.sin(t)
+    color = 'blue' if (crossings[i]) else 'red'
+    plt.plot([x1, x2], [y1, y2], color=color, alpha=0.5)
+for line in range(0, 50, int(d)):
+    plt.axhline(line, color='black', linestyle='--')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title(f"Buffon's Needle Method: Estimated π = {pi_estimate_buffon:.4f}")
+plt.show()
+
+# Output results
+print(f"Estimated π using Circle Method: {pi_estimate_circle:.4f}")
+print(f"Estimated π using Buffon's Needle Method: {pi_estimate_buffon:.4f}")
+</code></pre>
+<p><img alt="alt text" src="../image-3.png"/>
+<img alt="alt text" src="../image-4.png"/></p>
+<p><strong>Explanation of the Code</strong><br/>
+- <strong>Circle Method</strong>:<br/>
+  - Generate random points <span class="arithmatex">\((x, y)\)</span> in the square <span class="arithmatex">\([-1, 1] \times [-1, 1]\)</span>.<br/>
+  - Check if a point is inside the circle: <span class="arithmatex">\(x^2 + y^2 \leq 1\)</span>.<br/>
+  - Estimate <span class="arithmatex">\(\pi\)</span> as <span class="arithmatex">\(4 \cdot \frac{\text{number of points inside circle}}{\text{total number of points}}\)</span>.<br/>
+  - Visualize points inside (blue) and outside (red) the circle, with the circle boundary drawn.<br/>
+- <strong>Buffon's Needle Method</strong>:<br/>
+  - Generate random positions for the needle center <span class="arithmatex">\(x_{\text{center}}\)</span> and angle <span class="arithmatex">\(\theta\)</span>.<br/>
+  - Check if the needle crosses a line based on its position and angle.<br/>
+  - Estimate <span class="arithmatex">\(\pi\)</span> using the formula <span class="arithmatex">\(\frac{2l \cdot N_{\text{throws}}}{d \cdot N_{\text{crossings}}}\)</span>.<br/>
+  - Visualize the first 50 needles, with blue needles crossing lines and red ones not crossing.</p>
+<p><strong>Step 3: Visualization</strong></p>
+<ul>
+<li><strong>Circle Method</strong>: The plot shows points inside the circle (blue) and outside (red), with the circle boundary for clarity.  </li>
+<li><strong>Buffon's Needle Method</strong>: The plot shows needles and parallel lines. Blue needles cross the lines, while red needles do not.</li>
+</ul>
+<p><strong>Step 4: Analysis</strong></p>
+<ul>
+<li><strong>Accuracy</strong>:  </li>
+<li>Circle Method: The estimate <span class="arithmatex">\(\pi \approx 3.14\)</span> with 10,000 points is close to the true value <span class="arithmatex">\(\pi \approx 3.14159\)</span>.  </li>
+<li>Buffon's Needle Method: The estimate (e.g., <span class="arithmatex">\(\pi \approx 3.18\)</span>) is less accurate, as it requires more throws to converge due to the dependence on random angles.  </li>
+<li><strong>Convergence</strong>: The circle method converges faster because it uses more data points directly. Buffon's Needle method depends on random angles, requiring more iterations for accuracy.  </li>
+<li><strong>Number of Iterations</strong>: Increasing the number of points/throws (e.g., to 100,000) would improve the accuracy of both methods.</li>
+</ul>
+<p><strong>Step 5: Conclusions</strong></p>
+<p>Monte Carlo methods are a powerful tool for numerical estimation. The circle method is simple and effective for estimating <span class="arithmatex">\(\pi\)</span>, demonstrating the connection between probability and geometry. Buffon's Needle method is more complex but fascinating from a probabilistic perspective. Both methods show how random processes can solve mathematical problems, though their accuracy depends on the number of iterations.</p>
+<hr/>
+<h3 id="explanation-of-the-solutions">Explanation of the Solutions</h3>
+<h4 id="problem-1-exploring-the-central-limit-theorem-through-simulations">Problem 1: Exploring the Central Limit Theorem through Simulations</h4>
+<ul>
+<li><strong>Simulation</strong>: We generated populations with uniform, exponential, and binomial distributions to demonstrate the universality of the CLT.  </li>
+<li><strong>Visualization</strong>: Histograms of sample means show how the distribution becomes normal as <span class="arithmatex">\(n\)</span> increases.  </li>
+<li><strong>Analysis</strong>: The exponential distribution normalizes more slowly due to its skewness, but by <span class="arithmatex">\(n = 50\)</span>, all distributions are close to normal.  </li>
+<li><strong>Application</strong>: The CLT enables the use of normal-based statistical methods for data analysis from any population.</li>
+</ul>
+<h4 id="problem-2-estimating-pi-using-monte-carlo-methods_1">Problem 2: Estimating Pi Using Monte Carlo Methods</h4>
+<ul>
+<li><strong>Theory</strong>: The circle method uses geometric probability, while Buffon's Needle method relies on the probability of crossing lines.  </li>
+<li><strong>Simulation</strong>: We implemented both methods, using 10,000 iterations to estimate <span class="arithmatex">\(\pi\)</span>.  </li>
+<li><strong>Visualization</strong>: Plots show points inside/outside the circle and needles crossing/not crossing lines.  </li>
+<li><strong>Analysis</strong>: The circle method is more accurate and converges faster than Buffon's Needle method due to fewer random variables (e.g., no dependence on angle).  </li>
+</ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">

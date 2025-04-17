@@ -84,6 +84,12 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#problem-1-exploring-the-central-limit-theorem-through-simulations">Problem 1: Exploring the Central Limit Theorem through Simulations</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#detailed-solution-in-a-single-black-box">Detailed Solution in a Single Black Box</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Problem 2</a>
@@ -172,6 +178,91 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<hr/>
+<h3 id="problem-1-exploring-the-central-limit-theorem-through-simulations">Problem 1: Exploring the Central Limit Theorem through Simulations</h3>
+<h4 id="detailed-solution-in-a-single-black-box">Detailed Solution in a Single Black Box</h4>
+<p><strong>Step-by-Step Solution: Exploring the Central Limit Theorem through Simulations</strong></p>
+<p><strong>Step 1: Simulating Sampling Distributions</strong></p>
+<p>The Central Limit Theorem (CLT) states that the distribution of sample means from any population approaches a normal distribution as the sample size <span class="arithmatex">\(n\)</span> increases, regardless of the population's distribution. We will simulate three types of population distributions:<br/>
+- <strong>Uniform Distribution</strong>: Values between 0 and 1 with equal probability.<br/>
+- <strong>Exponential Distribution</strong>: Values decay exponentially, with parameter <span class="arithmatex">\(\lambda = 1\)</span>.<br/>
+- <strong>Binomial Distribution</strong>: Number of successes in <span class="arithmatex">\(n_{\text{trials}} = 10\)</span> trials, with success probability <span class="arithmatex">\(p = 0.5\)</span>.  </p>
+<p>For each distribution:<br/>
+1. Generate a population of 10,000 values.<br/>
+2. Take samples of sizes <span class="arithmatex">\(n = 5, 10, 30, 50\)</span>, with 1,000 samples for each <span class="arithmatex">\(n\)</span>.<br/>
+3. Compute the mean for each sample.</p>
+<p><strong>Step 2: Sampling and Visualization</strong></p>
+<p>We will visualize the distribution of sample means using histograms to observe their convergence to a normal distribution as <span class="arithmatex">\(n\)</span> increases. The normal distribution has the probability density function:<br/>
+$$
+f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}
+$$
+where <span class="arithmatex">\(\mu\)</span> is the mean and <span class="arithmatex">\(\sigma\)</span> is the standard deviation.</p>
+<p><strong>Python Code: Simulation and Visualization of Sampling Distributions</strong></p>
+<pre><code class="language-py">import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Simulation parameters
+np.random.seed(42)  # For reproducibility
+population_size = 10000  # Population size
+num_samples = 1000  # Number of samples
+sample_sizes = [5, 10, 30, 50]  # Sample sizes
+
+# Populations
+uniform_pop = np.random.uniform(0, 1, population_size)  # Uniform distribution
+exponential_pop = np.random.exponential(scale=1, size=population_size)  # Exponential
+binomial_pop = np.random.binomial(n=10, p=0.5, size=population_size)  # Binomial
+
+# List of populations for analysis
+populations = [
+    ("Uniform", uniform_pop),
+    ("Exponential", exponential_pop),
+    ("Binomial", binomial_pop)
+]
+
+# Simulation and visualization
+for pop_name, pop_data in populations:
+    plt.figure(figsize=(12, 8))
+    for i, n in enumerate(sample_sizes, 1):
+        # Generate samples and compute means
+        sample_means = [np.mean(np.random.choice(pop_data, size=n)) for _ in range(num_samples)]
+
+        # Plot histogram
+        plt.subplot(2, 2, i)
+        sns.histplot(sample_means, bins=30, stat="density", kde=True, label=f"n = {n}")
+        plt.title(f"{pop_name}, n = {n}")
+        plt.xlabel("Sample Mean")
+        plt.ylabel("Density")
+        plt.legend()
+    plt.tight_layout()
+    plt.show()
+</code></pre>
+<p><img alt="alt text" src="../image.png"/>
+<img alt="alt text" src="../image-1.png"/>
+<img alt="alt text" src="../image-2.png"/></p>
+<p><strong>Explanation of the Code</strong><br/>
+- <strong>Parameters</strong>: We set the population size (10,000), number of samples (1,000), and sample sizes (5, 10, 30, 50).<br/>
+- <strong>Populations</strong>: We generate three distributions: uniform, exponential, and binomial.<br/>
+- <strong>Simulation</strong>: For each sample size <span class="arithmatex">\(n\)</span>, we take 1,000 samples from the population and compute the mean.<br/>
+- <strong>Visualization</strong>: We plot histograms with a kernel density estimate (KDE) to show how the distribution of sample means approaches normality as <span class="arithmatex">\(n\)</span> increases.</p>
+<p><strong>Step 3: Parameter Exploration</strong></p>
+<ul>
+<li><strong>Shape of the Original Distribution</strong>:  </li>
+<li><strong>Uniform</strong>: Initially flat (all values from 0 to 1 are equally likely). The sample means become normal even at <span class="arithmatex">\(n = 10\)</span>.  </li>
+<li><strong>Exponential</strong>: Initially skewed (many small values, few large ones). At <span class="arithmatex">\(n = 5\)</span>, the distribution of means is still skewed, but by <span class="arithmatex">\(n = 50\)</span>, it is nearly normal.  </li>
+<li><strong>Binomial</strong>: Initially discrete (values from 0 to 10). By <span class="arithmatex">\(n = 30\)</span>, the distribution of means looks normal.  </li>
+<li><strong>Sample Size <span class="arithmatex">\(n\)</span></strong>: Larger <span class="arithmatex">\(n\)</span> leads to a distribution of means that is closer to normal, confirming the CLT.  </li>
+<li><strong>Population Variance</strong>: The exponential distribution has higher variance, so its convergence to normality is slower compared to the uniform distribution.</li>
+</ul>
+<p><strong>Step 4: Practical Applications</strong></p>
+<ul>
+<li><strong>Parameter Estimation</strong>: The CLT allows us to estimate population means (e.g., average height of people) using sample means.  </li>
+<li><strong>Quality Control</strong>: In manufacturing, the CLT ensures that sample means (e.g., weight of parts) follow a normal distribution, aiding in quality checks.  </li>
+<li><strong>Financial Models</strong>: The CLT is used to predict stock returns, as average returns tend to follow a normal distribution.</li>
+</ul>
+<p><strong>Step 5: Conclusions</strong></p>
+<p>The simulations demonstrate that the CLT holds for various population distributions. Even when the original distribution is far from normal (e.g., exponential), increasing the sample size <span class="arithmatex">\(n\)</span> results in a normal distribution of sample means. This makes the CLT a powerful tool in statistics for making inferences about populations based on samples.</p>
+<hr/>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
