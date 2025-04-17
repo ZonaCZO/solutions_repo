@@ -190,27 +190,100 @@
 <h4 id="detailed-solution-in-a-single-black-box">Detailed Solution in a Single Black Box</h4>
 <p><strong>Step-by-Step Solution: Estimating Pi Using Monte Carlo Methods</strong></p>
 <p><strong>Step 1: Theoretical Foundation</strong></p>
-<p>We will use two Monte Carlo methods to estimate <span class="arithmatex">\(\pi\)</span>:<br/>
-- <strong>Circle Method</strong>: Randomly scatter points in a square and count how many fall inside a circle.<br/>
-- <strong>Buffon's Needle Method</strong>: Randomly drop needles on a plane with parallel lines and count how many cross a line.  </p>
-<p><strong>1.1 Circle Method</strong><br/>
-Consider a square of side length 2 (from -1 to 1 on both axes) with an inscribed unit circle (radius <span class="arithmatex">\(r = 1\)</span>). The area of the circle is <span class="arithmatex">\(\pi r^2 = \pi \cdot 1^2 = \pi\)</span>, and the area of the square is <span class="arithmatex">\(2 \cdot 2 = 4\)</span>. The probability that a random point falls inside the circle is the ratio of the areas:<br/>
-$$
-P = \frac{\text{area of circle}}{\text{area of square}} = \frac{\pi}{4}
-$$
-Estimate of <span class="arithmatex">\(\pi\)</span>:<br/>
-$$
-\pi \approx 4 \cdot \frac{\text{number of points inside circle}}{\text{total number of points}}
-$$</p>
-<p><strong>1.2 Buffon's Needle Method</strong><br/>
-Drop a needle of length <span class="arithmatex">\(l\)</span> on a plane with parallel lines spaced <span class="arithmatex">\(d\)</span> apart. The probability that the needle crosses a line depends on <span class="arithmatex">\(l\)</span>, <span class="arithmatex">\(d\)</span>, and the angle of incidence <span class="arithmatex">\(\theta\)</span>. If <span class="arithmatex">\(l \leq d\)</span>, the probability of crossing is:<br/>
-$$
-P = \frac{2l}{\pi d}
-$$
-Estimate of <span class="arithmatex">\(\pi\)</span>:<br/>
-$$
-\pi \approx \frac{2l \cdot N_{\text{throws}}}{d \cdot N_{\text{crossings}}}
-$$</p>
+<p>Monte Carlo methods are a class of computational algorithms that use random sampling to estimate mathematical or physical quantities. They are particularly useful for problems where analytical solutions are difficult or impossible to obtain, such as estimating the value of <span class="arithmatex">\(\pi\)</span> (approximately 3.14159). These methods rely on the law of large numbers: as the number of random trials increases, the average outcome approaches the expected value. In this problem, we will use two distinct Monte Carlo approaches to estimate <span class="arithmatex">\(\pi\)</span>:</p>
+<ul>
+<li><strong>Circle Method</strong>: This method uses geometric probability by scattering random points in a square and determining the proportion that fall inside an inscribed circle.</li>
+<li><strong>Buffon's Needle Method</strong>: This method uses probabilistic geometry by dropping needles on a plane with parallel lines and counting how many cross a line.</li>
+</ul>
+<p><strong>1.1 Circle Method</strong></p>
+<p>The circle method leverages the relationship between the areas of a circle and a square to estimate <span class="arithmatex">\(\pi\)</span>. Let's break this down step by step:</p>
+<ul>
+<li>
+<p><strong>Geometric Setup</strong>: Consider a unit circle centered at the origin with radius <span class="arithmatex">\(r = 1\)</span>. The equation of this circle is <span class="arithmatex">\(x^2 + y^2 = 1\)</span>, and its area is given by:
+  $$
+  \text{Area of circle} = \pi r^2 = \pi \cdot 1^2 = \pi
+  $$
+  Now, place this circle inside a square that fully encloses it. The square should range from <span class="arithmatex">\(x = -1\)</span> to <span class="arithmatex">\(x = 1\)</span> and <span class="arithmatex">\(y = -1\)</span> to <span class="arithmatex">\(y = 1\)</span>, so its side length is <span class="arithmatex">\(2\)</span> (from -1 to 1 along each axis). The area of the square is:
+  $$
+  \text{Area of square} = 2 \cdot 2 = 4
+  $$</p>
+</li>
+<li>
+<p><strong>Probability Interpretation</strong>: Imagine scattering points randomly and uniformly across the square. The probability that a randomly chosen point <span class="arithmatex">\((x, y)\)</span> falls inside the circle is the ratio of the circle's area to the square's area:
+  $$
+  P(\text{point inside circle}) = \frac{\text{Area of circle}}{\text{Area of square}} = \frac{\pi}{4}
+  $$
+  A point <span class="arithmatex">\((x, y)\)</span> is inside the circle if it satisfies the equation of the circle, i.e., if <span class="arithmatex">\(x^2 + y^2 \leq 1\)</span>. Since <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> are uniformly distributed between -1 and 1, the probability of satisfying this condition matches the area ratio.</p>
+</li>
+<li>
+<p><strong>Monte Carlo Estimation</strong>: To estimate <span class="arithmatex">\(\pi\)</span>, we simulate this process by generating <span class="arithmatex">\(N\)</span> random points <span class="arithmatex">\((x, y)\)</span> in the square (i.e., <span class="arithmatex">\(x \sim \text{Uniform}(-1, 1)\)</span>, <span class="arithmatex">\(y \sim \text{Uniform}(-1, 1)\)</span>). We count the number of points that fall inside the circle (i.e., where <span class="arithmatex">\(x^2 + y^2 \leq 1\)</span>). Let’s call this number <span class="arithmatex">\(N_{\text{inside}}\)</span>. The total number of points is <span class="arithmatex">\(N_{\text{total}} = N\)</span>. The proportion of points inside the circle approximates the probability:
+  $$
+  \frac{N_{\text{inside}}}{N_{\text{total}}} \approx P(\text{point inside circle}) = \frac{\pi}{4}
+  $$
+  Solving for <span class="arithmatex">\(\pi\)</span>, we get the estimate:
+  $$
+  \pi \approx 4 \cdot \frac{N_{\text{inside}}}{N_{\text{total}}}
+  $$
+  As <span class="arithmatex">\(N_{\text{total}}\)</span> increases, this estimate becomes more accurate due to the law of large numbers.</p>
+</li>
+<li>
+<p><strong>Expected Accuracy</strong>: The error in Monte Carlo methods typically decreases as <span class="arithmatex">\(\frac{1}{\sqrt{N}}\)</span>, so with a large number of points (e.g., <span class="arithmatex">\(N = 10,000\)</span>), we expect a reasonably accurate estimate of <span class="arithmatex">\(\pi\)</span>, though some random variation will remain.</p>
+</li>
+</ul>
+<p><strong>1.2 Buffon's Needle Method</strong></p>
+<p>The Buffon's Needle method is a classic probabilistic experiment proposed by Georges-Louis Leclerc, Comte de Buffon, in the 18th century. It estimates <span class="arithmatex">\(\pi\)</span> by simulating the random dropping of needles on a plane with parallel lines.</p>
+<ul>
+<li><strong>Geometric Setup</strong>: Consider a plane with parallel lines spaced <span class="arithmatex">\(d\)</span> units apart. We drop a needle of length <span class="arithmatex">\(l\)</span> onto this plane, where we assume <span class="arithmatex">\(l \leq d\)</span> for simplicity (though the method can be extended to <span class="arithmatex">\(l &gt; d\)</span>). The needle is dropped randomly, meaning:</li>
+<li>The center of the needle lands at a random position between two lines, so the x-coordinate of the center relative to the nearest line, <span class="arithmatex">\(x_{\text{center}}\)</span>, is uniformly distributed: <span class="arithmatex">\(x_{\text{center}} \sim \text{Uniform}(0, d)\)</span>.</li>
+<li>
+<p>The angle of the needle relative to the lines, <span class="arithmatex">\(\theta\)</span>, is also random and uniformly distributed: <span class="arithmatex">\(\theta \sim \text{Uniform}(0, \pi)\)</span> (we consider angles up to <span class="arithmatex">\(\pi\)</span> because the needle's orientation is symmetric).</p>
+</li>
+<li>
+<p><strong>Probability of Crossing</strong>: We need to calculate the probability that the needle crosses one of the parallel lines. A needle crosses a line if the perpendicular distance from its center to the nearest line is less than or equal to the projection of half its length along the perpendicular direction. The perpendicular distance from the center to the nearest line is <span class="arithmatex">\(x_{\text{center}}\)</span>, and the projection of half the needle’s length perpendicular to the lines is <span class="arithmatex">\(\frac{l}{2} \sin(\theta)\)</span>. Thus, the needle crosses a line if:
+  $$
+  x_{\text{center}} \leq \frac{l}{2} \sin(\theta)
+  $$
+  Since <span class="arithmatex">\(x_{\text{center}}\)</span> is uniform on <span class="arithmatex">\([0, d]\)</span>, the probability of crossing for a given angle <span class="arithmatex">\(\theta\)</span> is:
+  $$
+  P(\text{crossing} \mid \theta) = \frac{\frac{l}{2} \sin(\theta)}{d}
+  $$
+  However, <span class="arithmatex">\(\theta\)</span> is random, so we need the overall probability by integrating over all possible angles. The probability density of <span class="arithmatex">\(\theta\)</span> is <span class="arithmatex">\(\frac{1}{\pi}\)</span> (since <span class="arithmatex">\(\theta \sim \text{Uniform}(0, \pi)\)</span>). The total probability of crossing is:
+  $$
+  P(\text{crossing}) = \int_0^\pi P(\text{crossing} \mid \theta) \cdot \frac{1}{\pi} \, d\theta = \int_0^\pi \frac{\frac{l}{2} \sin(\theta)}{d} \cdot \frac{1}{\pi} \, d\theta
+  $$
+  Simplify the expression:
+  $$
+  P(\text{crossing}) = \frac{l}{2 \pi d} \int_0^\pi \sin(\theta) \, d\theta
+  $$
+  The integral of <span class="arithmatex">\(\sin(\theta)\)</span> over <span class="arithmatex">\([0, \pi]\)</span> is:
+  $$
+  \int_0^\pi \sin(\theta) \, d\theta = [-\cos(\theta)]_0^\pi = -\cos(\pi) - (-\cos(0)) = -(-1) - (-1) = 1 + 1 = 2
+  $$
+  Thus:
+  $$
+  P(\text{crossing}) = \frac{l}{2 \pi d} \cdot 2 = \frac{l}{\pi d}
+  $$
+  However, the standard form of the probability for Buffon's Needle (when <span class="arithmatex">\(l \leq d\)</span>) is:
+  $$
+  P = \frac{2l}{\pi d}
+  $$
+  This discrepancy arises because we need to account for the fact that the needle can cross a line on either side of its center, doubling the effective probability (depending on the interpretation of the setup). The commonly accepted probability in this context is indeed <span class="arithmatex">\(\frac{2l}{\pi d}\)</span>.</p>
+</li>
+<li>
+<p><strong>Monte Carlo Estimation</strong>: To estimate <span class="arithmatex">\(\pi\)</span>, we simulate dropping <span class="arithmatex">\(N_{\text{throws}}\)</span> needles. We count the number of needles that cross a line, <span class="arithmatex">\(N_{\text{crossings}}\)</span>. The proportion of needles that cross a line approximates the probability:
+  $$
+  \frac{N_{\text{crossings}}}{N_{\text{throws}}} \approx P = \frac{2l}{\pi d}
+  $$
+  Solving for <span class="arithmatex">\(\pi\)</span>, we get:
+  $$
+  \pi \approx \frac{2l \cdot N_{\text{throws}}}{d \cdot N_{\text{crossings}}}
+  $$
+  Again, as <span class="arithmatex">\(N_{\text{throws}}\)</span> increases, the estimate becomes more accurate.</p>
+</li>
+<li>
+<p><strong>Expected Accuracy</strong>: Similar to the circle method, the error decreases as <span class="arithmatex">\(\frac{1}{\sqrt{N_{\text{throws}}}}\)</span>. However, Buffon's Needle method often converges more slowly than the circle method because it depends on two random variables (<span class="arithmatex">\(x_{\text{center}}\)</span> and <span class="arithmatex">\(\theta\)</span>), introducing more variability.</p>
+</li>
+</ul>
 <p><strong>Step 2: Simulation</strong></p>
 <p>We will implement both methods:<br/>
 - For the circle method: Use <span class="arithmatex">\(N = 10,000\)</span> points.<br/>

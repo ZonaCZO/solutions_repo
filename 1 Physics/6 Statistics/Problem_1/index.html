@@ -84,12 +84,6 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="#problem-1-exploring-the-central-limit-theorem-through-simulations">Problem 1: Exploring the Central Limit Theorem through Simulations</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#detailed-solution-in-a-single-black-box">Detailed Solution in a Single Black Box</a>
-</li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Problem 2</a>
@@ -179,24 +173,64 @@
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
 <hr/>
-<h3 id="problem-1-exploring-the-central-limit-theorem-through-simulations">Problem 1: Exploring the Central Limit Theorem through Simulations</h3>
-<h4 id="detailed-solution-in-a-single-black-box">Detailed Solution in a Single Black Box</h4>
 <p><strong>Step-by-Step Solution: Exploring the Central Limit Theorem through Simulations</strong></p>
 <p><strong>Step 1: Simulating Sampling Distributions</strong></p>
-<p>The Central Limit Theorem (CLT) states that the distribution of sample means from any population approaches a normal distribution as the sample size <span class="arithmatex">\(n\)</span> increases, regardless of the population's distribution. We will simulate three types of population distributions:<br/>
-- <strong>Uniform Distribution</strong>: Values between 0 and 1 with equal probability.<br/>
-- <strong>Exponential Distribution</strong>: Values decay exponentially, with parameter <span class="arithmatex">\(\lambda = 1\)</span>.<br/>
-- <strong>Binomial Distribution</strong>: Number of successes in <span class="arithmatex">\(n_{\text{trials}} = 10\)</span> trials, with success probability <span class="arithmatex">\(p = 0.5\)</span>.  </p>
-<p>For each distribution:<br/>
-1. Generate a population of 10,000 values.<br/>
-2. Take samples of sizes <span class="arithmatex">\(n = 5, 10, 30, 50\)</span>, with 1,000 samples for each <span class="arithmatex">\(n\)</span>.<br/>
-3. Compute the mean for each sample.</p>
+<p>The Central Limit Theorem (CLT) is a fundamental concept in statistics and probability theory. It states that the distribution of the sample means (i.e., the average of a sample) taken from any population will tend to follow a normal distribution as the sample size <span class="arithmatex">\(n\)</span> increases, regardless of the shape of the population distribution, provided the population has a finite mean and variance. Mathematically, if we take a sample of size <span class="arithmatex">\(n\)</span> from a population with mean <span class="arithmatex">\(\mu\)</span> and standard deviation <span class="arithmatex">\(\sigma\)</span>, the distribution of the sample mean <span class="arithmatex">\(\bar{X}\)</span> will approximately follow a normal distribution with mean <span class="arithmatex">\(\mu\)</span> and standard deviation <span class="arithmatex">\(\frac{\sigma}{\sqrt{n}}\)</span> for large <span class="arithmatex">\(n\)</span>:</p>
+<div class="arithmatex">\[
+\bar{X} \sim N\left(\mu, \frac{\sigma}{\sqrt{n}}\right)
+\]</div>
+<p>This property holds even if the population distribution is not normal (e.g., uniform, exponential, or binomial), making the CLT a powerful tool for statistical inference.</p>
+<p>To explore this theorem, we will simulate three types of population distributions with different shapes to demonstrate the CLT's universality:</p>
+<ul>
+<li>
+<p><strong>Uniform Distribution</strong>: A continuous distribution where all values between a minimum (0) and maximum (1) are equally likely. The probability density function (PDF) is:
+  $$
+  f(x) = \begin{cases} 
+  1 &amp; \text{for } 0 \leq x \leq 1 \
+  0 &amp; \text{otherwise}
+  \end{cases}
+  $$
+  The mean of a uniform distribution on <span class="arithmatex">\([0, 1]\)</span> is <span class="arithmatex">\(\mu = \frac{0 + 1}{2} = 0.5\)</span>, and the standard deviation is <span class="arithmatex">\(\sigma = \frac{1 - 0}{\sqrt{12}} = \frac{1}{\sqrt{12}} \approx 0.2887\)</span>.</p>
+</li>
+<li>
+<p><strong>Exponential Distribution</strong>: A continuous distribution often used to model the time between events in a Poisson process (e.g., waiting times). Its PDF is:
+  $$
+  f(x) = \lambda e^{-\lambda x}, \quad x \geq 0
+  $$
+  We use <span class="arithmatex">\(\lambda = 1\)</span>, so the mean is <span class="arithmatex">\(\mu = \frac{1}{\lambda} = 1\)</span>, and the standard deviation is <span class="arithmatex">\(\sigma = \frac{1}{\lambda} = 1\)</span>. This distribution is heavily right-skewed, meaning it has many small values and a long tail of larger values.</p>
+</li>
+<li>
+<p><strong>Binomial Distribution</strong>: A discrete distribution representing the number of successes in <span class="arithmatex">\(n_{\text{trials}}\)</span> independent trials, each with success probability <span class="arithmatex">\(p\)</span>. The probability mass function (PMF) is:
+  $$
+  P(X = k) = \binom{n_{\text{trials}}}{k} p^k (1 - p)^{n_{\text{trials}} - k}
+  $$
+  We use <span class="arithmatex">\(n_{\text{trials}} = 10\)</span> and <span class="arithmatex">\(p = 0.5\)</span>, so the mean is <span class="arithmatex">\(\mu = n_{\text{trials}} \cdot p = 10 \cdot 0.5 = 5\)</span>, and the standard deviation is <span class="arithmatex">\(\sigma = \sqrt{n_{\text{trials}} \cdot p \cdot (1 - p)} = \sqrt{10 \cdot 0.5 \cdot 0.5} = \sqrt{2.5} \approx 1.581\)</span>.</p>
+</li>
+</ul>
+<p>For each of these distributions, we will perform the following steps:</p>
+<ol>
+<li>
+<p><strong>Generate a Population</strong>: Create a large population of 10,000 values to represent the "true" distribution. This large size ensures that our population is a good approximation of the theoretical distribution.</p>
+</li>
+<li>
+<p><strong>Take Samples</strong>: For each sample size <span class="arithmatex">\(n \in \{5, 10, 30, 50\}\)</span>, draw 1,000 samples of size <span class="arithmatex">\(n\)</span> from the population. A sample of size <span class="arithmatex">\(n\)</span> means we randomly select <span class="arithmatex">\(n\)</span> values from the population (with replacement, to mimic independent sampling).</p>
+</li>
+<li>
+<p><strong>Compute Sample Means</strong>: For each of the 1,000 samples, calculate the sample mean <span class="arithmatex">\(\bar{x}\)</span>, defined as:
+   $$
+   \bar{x} = \frac{1}{n} \sum_{i=1}^n x_i
+   $$
+   where <span class="arithmatex">\(x_i\)</span> are the values in the sample. This gives us 1,000 sample means for each <span class="arithmatex">\(n\)</span>.</p>
+</li>
+</ol>
+<p>The goal is to observe how the distribution of these sample means approaches a normal distribution as <span class="arithmatex">\(n\)</span> increases, which is the core idea of the CLT.</p>
 <p><strong>Step 2: Sampling and Visualization</strong></p>
-<p>We will visualize the distribution of sample means using histograms to observe their convergence to a normal distribution as <span class="arithmatex">\(n\)</span> increases. The normal distribution has the probability density function:<br/>
-$$
+<p>To confirm the CLT, we will visualize the distribution of the sample means using histograms. A histogram shows the frequency of different values of the sample means, and we will overlay a kernel density estimate (KDE) to smooth the histogram and better visualize the shape of the distribution. According to the CLT, as <span class="arithmatex">\(n\)</span> increases, the histogram of sample means should resemble a normal distribution, which has the following probability density function (PDF):</p>
+<div class="arithmatex">\[
 f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}
-$$
-where <span class="arithmatex">\(\mu\)</span> is the mean and <span class="arithmatex">\(\sigma\)</span> is the standard deviation.</p>
+\]</div>
+<p>where <span class="arithmatex">\(\mu\)</span> is the mean of the sample means (which should equal the population mean <span class="arithmatex">\(\mu\)</span>), and <span class="arithmatex">\(\sigma\)</span> is the standard deviation of the sample means (which should equal the population standard deviation divided by <span class="arithmatex">\(\sqrt{n}\)</span>, i.e., <span class="arithmatex">\(\frac{\sigma}{\sqrt{n}}\)</span>).</p>
+<p>We will create four subplots for each population (one for each sample size <span class="arithmatex">\(n\)</span>), showing how the distribution of sample means changes as <span class="arithmatex">\(n\)</span> increases. The KDE curve on the histogram will help us visually compare the shape to a normal distribution.</p>
 <p><strong>Python Code: Simulation and Visualization of Sampling Distributions</strong></p>
 <pre><code class="language-py">import numpy as np
 import matplotlib.pyplot as plt
