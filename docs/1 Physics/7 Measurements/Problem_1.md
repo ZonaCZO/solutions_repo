@@ -116,15 +116,6 @@ plt.show()
 ![alt text](image.png)
 ---
 
-### ✅ Sample Output (based on the code):
-
-```
-Mean T_10: 24.73800 s
-Standard Deviation σ_T10: 0.06236 s
-Mean Period T: 2.47380 s
-g: 9.2821 m/s^2
-Δg: 0.0857 m/s^2
-```
 
 So your **measured g** is:
 
