@@ -171,127 +171,144 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
+<p>Конечно — вот твой текст с заменой всех ( на $ и [ на $$ без пробелов:</p>
+<hr/>
 <h1 id="problem-1">Problem 1</h1>
 <h1 id="investigating-projectile-motion-dependence-of-range-on-launch-angle"><strong>Investigating Projectile Motion: Dependence of Range on Launch Angle</strong></h1>
-<p>Projectile motion, the movement of an object thrown at an angle to the horizontal, is a fundamental concept in physics. Understanding how the range of a projectile depends on the launch angle is not only mathematically intriguing but also has numerous real-world applications. This principle is widely used in various fields, from analyzing the flight of a soccer ball to calculating the trajectory of a spacecraft.  </p>
+<p>Projectile motion, the movement of an object thrown at an angle to the horizontal, is a fundamental concept in physics. Understanding how the range of a projectile depends on the launch angle is not only mathematically intriguing but also has numerous real-world applications. This principle is widely used in various fields, from analyzing the flight of a soccer ball to calculating the trajectory of a spacecraft.</p>
 <hr/>
 <h2 id="1-theoretical-foundation"><strong>1. Theoretical Foundation</strong></h2>
-<p>I see you're asking about deriving the equations for projectile motion, specifically the range equation <span class="arithmatex">\( R = \frac{v_0^2 \sin(2\theta)}{g} \)</span>, as shown in the image. Let's go through the derivation step by step using the given equations of motion. We'll assume you're looking to derive the range <span class="arithmatex">\( R \)</span>, since that's the final equation highlighted, but if you'd like to derive another part (like the time of flight), let me know!</p>
+<p>I see you're asking about deriving the equations for projectile motion, specifically the range equation <span class="arithmatex">\(R = \frac{v\_0^2 \sin(2\theta)}{g}\)</span>, as shown in the image. Let's go through the derivation step by step using the given equations of motion. We'll assume you're looking to derive the range $R$, since that's the final equation highlighted, but if you'd like to derive another part (like the time of flight), let me know!</p>
 <h3 id="step-1-understand-the-setup">Step 1: Understand the Setup</h3>
-<p>Projectile motion describes an object launched at an initial velocity <span class="arithmatex">\( v_0 \)</span> at an angle <span class="arithmatex">\( \theta \)</span> to the horizontal, under the influence of gravity <span class="arithmatex">\( g \)</span> (with no air resistance). The motion can be broken into two independent components:
-- <strong>Horizontal motion</strong> (x-direction): Constant velocity, since there's no horizontal acceleration.
-- <strong>Vertical motion</strong> (y-direction): Accelerated motion due to gravity.</p>
-<p>The given equations are:
-- Horizontal position: <span class="arithmatex">\( x = v_0 \cos \theta \cdot t \)</span>
-- Vertical position: <span class="arithmatex">\( y = v_0 \sin \theta \cdot t - \frac{1}{2} g t^2 \)</span>
-- Time of flight: <span class="arithmatex">\( t = \frac{2 v_0 \sin \theta}{g} \)</span> (when <span class="arithmatex">\( y = 0 \)</span>, i.e., when the projectile returns to the ground)
-- Range: <span class="arithmatex">\( R = \frac{v_0^2 \sin(2\theta)}{g} \)</span></p>
-<p>Our goal is to derive the range <span class="arithmatex">\( R \)</span>.</p>
+<p>Projectile motion describes an object launched at an initial velocity <span class="arithmatex">\(v\_0\)</span> at an angle <span class="arithmatex">\(\theta\)</span> to the horizontal, under the influence of gravity <span class="arithmatex">\(g\)</span> (with no air resistance). The motion can be broken into two independent components:</p>
+<ul>
+<li><strong>Horizontal motion</strong> (x-direction): Constant velocity, since there's no horizontal acceleration.</li>
+<li><strong>Vertical motion</strong> (y-direction): Accelerated motion due to gravity.</li>
+</ul>
+<p>The given equations are:</p>
+<ul>
+<li>Horizontal position: <span class="arithmatex">\(x = v\_0 \cos \theta \cdot t\)</span></li>
+<li>Vertical position: <span class="arithmatex">\(y = v\_0 \sin \theta \cdot t - \frac{1}{2} g t^2\)</span></li>
+<li>Time of flight: <span class="arithmatex">\(t=\frac{2 v\_0 \sin \theta}{g}\)</span> (when <span class="arithmatex">\(y = 0\)</span>, i.e., when the projectile returns to the ground)</li>
+<li>Range: <span class="arithmatex">\(R = \frac{v\_0^2 \sin(2\theta)}{g}\)</span></li>
+</ul>
+<p>Our goal is to derive the range $R$.</p>
 <hr/>
 <h3 id="step-2-derive-the-time-of-flight">Step 2: Derive the Time of Flight</h3>
-<p>First, we need the total time the projectile is in the air (time of flight). The projectile returns to the ground when its vertical position <span class="arithmatex">\( y = 0 \)</span>.</p>
-<p>Use the vertical position equation:
-[
+<p>First, we need the total time the projectile is in the air (time of flight). The projectile returns to the ground when its vertical position $y = 0$.</p>
+<p>Use the vertical position equation:</p>
+<div class="arithmatex">\[
 y = v_0 \sin \theta \cdot t - \frac{1}{2} g t^2
-]
-Set <span class="arithmatex">\( y = 0 \)</span> (when the projectile lands):
-[
+\]</div>
+<p>Set $y = 0$ (when the projectile lands):</p>
+<div class="arithmatex">\[
 0 = v_0 \sin \theta \cdot t - \frac{1}{2} g t^2
-]
-Factor out <span class="arithmatex">\( t \)</span>:
-[
+\]</div>
+<p>Factor out $t$:</p>
+<div class="arithmatex">\[
 t \left( v_0 \sin \theta - \frac{1}{2} g t \right) = 0
-]
-This gives two solutions:
-- <span class="arithmatex">\( t = 0 \)</span> (the launch point)
-- <span class="arithmatex">\( v_0 \sin \theta - \frac{1}{2} g t = 0 \)</span></p>
-<p>Solve the second equation:
-[
+\]</div>
+<p>This gives two solutions:</p>
+<ul>
+<li>$t = 0$ (the launch point)</li>
+<li>$v_0 \sin \theta - \frac{1}{2} g t = 0$</li>
+</ul>
+<p>Solve the second equation:</p>
+<div class="arithmatex">\[
 v_0 \sin \theta - \frac{1}{2} g t = 0
-]
-[
+\]</div>
+<div class="arithmatex">\[
 \frac{1}{2} g t = v_0 \sin \theta
-]
-[
+\]</div>
+<div class="arithmatex">\[
 t = \frac{v_0 \sin \theta}{\frac{1}{2} g} = \frac{2 v_0 \sin \theta}{g}
-]
-This matches the given time of flight:
-[
+\]</div>
+<p>This matches the given time of flight:</p>
+<div class="arithmatex">\[
 t = \frac{2 v_0 \sin \theta}{g}
-]
-This is the total time the projectile is in the air.</p>
+\]</div>
+<p>This is the total time the projectile is in the air.</p>
 <hr/>
-<h3 id="step-3-derive-the-range-r">Step 3: Derive the Range <span class="arithmatex">\( R \)</span></h3>
-<p>The range <span class="arithmatex">\( R \)</span> is the horizontal distance traveled when the projectile lands, i.e., the value of <span class="arithmatex">\( x \)</span> when <span class="arithmatex">\( t = \frac{2 v_0 \sin \theta}{g} \)</span>.</p>
-<p>Use the horizontal position equation:
-[
+<h3 id="step-3-derive-the-range-r">Step 3: Derive the Range $R$</h3>
+<p>The range $R$ is the horizontal distance traveled when the projectile lands, i.e., the value of $x$ when $t = \frac{2 v_0 \sin \theta}{g}$.</p>
+<p>Use the horizontal position equation:</p>
+<div class="arithmatex">\[
 x = v_0 \cos \theta \cdot t
-]
-Substitute the time of flight <span class="arithmatex">\( t = \frac{2 v_0 \sin \theta}{g} \)</span>:
-[
+\]</div>
+<p>Substitute the time of flight $t = \frac{2 v_0 \sin \theta}{g}$:</p>
+<div class="arithmatex">\[
 R = x = v_0 \cos \theta \cdot \left( \frac{2 v_0 \sin \theta}{g} \right)
-]
-Simplify:
-[
+\]</div>
+<p>Simplify:</p>
+<div class="arithmatex">\[
 R = \frac{v_0 \cdot 2 v_0 \sin \theta \cos \theta}{g} = \frac{2 v_0^2 \sin \theta \cos \theta}{g}
-]
-Now, use the trigonometric identity <span class="arithmatex">\( \sin(2\theta) = 2 \sin \theta \cos \theta \)</span>:
-[
+\]</div>
+<p>Now, use the trigonometric identity $\sin(2\theta) = 2 \sin \theta \cos \theta$:</p>
+<div class="arithmatex">\[
 2 \sin \theta \cos \theta = \sin(2\theta)
-]
-Substitute this into the equation:
-[
+\]</div>
+<p>Substitute this into the equation:</p>
+<div class="arithmatex">\[
 R = \frac{v_0^2 \sin(2\theta)}{g}
-]
-This matches the given range equation:
-[
+\]</div>
+<p>This matches the given range equation:</p>
+<div class="arithmatex">\[
 R = \frac{v_0^2 \sin(2\theta)}{g}
-]</p>
+\]</div>
 <hr/>
 <h3 id="step-4-verify-the-result">Step 4: Verify the Result</h3>
-<p>The derived equation shows that the range depends on:
-- The square of the initial velocity (<span class="arithmatex">\( v_0^2 \)</span>),
-- The sine of twice the launch angle (<span class="arithmatex">\( \sin(2\theta) \)</span>),
-- The gravitational acceleration (<span class="arithmatex">\( g \)</span>).</p>
-<p>This makes physical sense:
-- A higher initial velocity increases the range (since <span class="arithmatex">\( v_0^2 \)</span>).
-- The <span class="arithmatex">\( \sin(2\theta) \)</span> term indicates that the range is maximized when <span class="arithmatex">\( 2\theta = 90^\circ \)</span>, or <span class="arithmatex">\( \theta = 45^\circ \)</span>, which is a well-known result in projectile motion.
-- A larger <span class="arithmatex">\( g \)</span> (e.g., on a planet with stronger gravity) reduces the range.</p>
+<p>The derived equation shows that the range depends on:</p>
+<ul>
+<li>The square of the initial velocity ($v_0^2$),</li>
+<li>The sine of twice the launch angle ($\sin(2\theta)$),</li>
+<li>The gravitational acceleration ($g$).</li>
+</ul>
+<p>This makes physical sense:</p>
+<ul>
+<li>A higher initial velocity increases the range (since $v_0^2$).</li>
+<li>The $\sin(2\theta)$ term indicates that the range is maximized when $2\theta = 90^\circ$, or $\theta = 45^\circ$, which is a well-known result in projectile motion.</li>
+<li>A larger $g$ (e.g., on a planet with stronger gravity) reduces the range.</li>
+</ul>
 <hr/>
 <h3 id="final-answer">Final Answer</h3>
-<p>The range of the projectile is:
-[
+<p>The range of the projectile is:</p>
+<div class="arithmatex">\[
 R = \frac{v_0^2 \sin(2\theta)}{g}
-]
-This was derived by:
-1. Finding the time of flight by setting the vertical position to zero.
-2. Substituting the time of flight into the horizontal position equation.
-3. Simplifying using the trigonometric identity <span class="arithmatex">\( 2 \sin \theta \cos \theta = \sin(2\theta) \)</span>.</p>
-<h2 id="if-youd-like-to-derive-any-other-part-of-the-projectile-motion-equations-eg-maximum-height-or-need-a-numerical-example-let-me-know">If you'd like to derive any other part of the projectile motion equations (e.g., maximum height) or need a numerical example, let me know!</h2>
+\]</div>
+<p>This was derived by:</p>
+<ol>
+<li>Finding the time of flight by setting the vertical position to zero.</li>
+<li>Substituting the time of flight into the horizontal position equation.</li>
+<li>Simplifying using the trigonometric identity $2 \sin \theta \cos \theta = \sin(2\theta)$.</li>
+</ol>
+<p>If you'd like to derive any other part of the projectile motion equations (e.g., maximum height) or need a numerical example, let me know!</p>
+<hr/>
 <h2 id="2-range-analysis-based-on-launch-angle"><strong>2. Range Analysis Based on Launch Angle</strong></h2>
-<p>Key observations:  </p>
+<p>Key observations:</p>
 <ul>
-<li><strong>Maximum range</strong> occurs at $ \theta = 45^\circ $ (assuming no air resistance).  </li>
-<li><strong>Symmetry of trajectory:</strong> The same range is achieved at complementary angles (e.g., <span class="arithmatex">\(30^\circ\)</span> and <span class="arithmatex">\(60^\circ\)</span> result in the same range).  </li>
-<li><strong>Dependence on velocity:</strong> Since <span class="arithmatex">\(R\propto v_0^2\)</span>, doubling the initial velocity quadruples the range.  </li>
-<li><strong>Effect of gravity:</strong> On planets with lower gravity (e.g., the Moon, where <span class="arithmatex">\(g \approx 1.62\)</span> m/s²), projectiles travel much farther than on Earth.  </li>
+<li><strong>Maximum range</strong> occurs at $\theta = 45^\circ$ (assuming no air resistance).</li>
+<li><strong>Symmetry of trajectory:</strong> The same range is achieved at complementary angles (e.g., $30^\circ$ and $60^\circ$ result in the same range).</li>
+<li><strong>Dependence on velocity:</strong> Since $R\propto v_0^2$, doubling the initial velocity quadruples the range.</li>
+<li><strong>Effect of gravity:</strong> On planets with lower gravity (e.g., the Moon, where $g \approx 1.62$ m/s²), projectiles travel much farther than on Earth.</li>
 </ul>
 <hr/>
 <h2 id="3-practical-applications-of-projectile-motion"><strong>3. Practical Applications of Projectile Motion</strong></h2>
-<p>Projectile motion plays a crucial role in various fields:  </p>
+<p>Projectile motion plays a crucial role in various fields:</p>
 <ol>
-<li><strong>Sports:</strong> Optimizing kick angles in soccer, basketball shots, and long jumps.  </li>
-<li><strong>Ballistics:</strong> Calculating bullet and missile trajectories.  </li>
-<li><strong>Engineering:</strong> Designing structures resistant to impact forces.  </li>
-<li><strong>Space Exploration:</strong> Determining launch trajectories for satellites and landers.  </li>
+<li><strong>Sports:</strong> Optimizing kick angles in soccer, basketball shots, and long jumps.</li>
+<li><strong>Ballistics:</strong> Calculating bullet and missile trajectories.</li>
+<li><strong>Engineering:</strong> Designing structures resistant to impact forces.</li>
+<li><strong>Space Exploration:</strong> Determining launch trajectories for satellites and landers.</li>
 </ol>
-<p>However, real-world factors complicate the idealized model:<br/>
-- <strong>Air resistance</strong> reduces the range.<br/>
-- <strong>Uneven terrain</strong> affects the landing position.<br/>
-- <strong>Magnus effect (object spin)</strong> alters the trajectory (e.g., in soccer or tennis).  </p>
+<p>However, real-world factors complicate the idealized model:</p>
+<ul>
+<li><strong>Air resistance</strong> reduces the range.</li>
+<li><strong>Uneven terrain</strong> affects the landing position.</li>
+<li><strong>Magnus effect (object spin)</strong> alters the trajectory (e.g., in soccer or tennis).</li>
+</ul>
 <hr/>
 <h2 id="4-implementation-and-visualization-with-code"><strong>4. Implementation and Visualization with Code</strong></h2>
-<p>To gain a deeper understanding of projectile motion, Python can be used to compute and visualize the relationship between launch angle and range.  </p>
+<p>To gain a deeper understanding of projectile motion, Python can be used to compute and visualize the relationship between launch angle and range.</p>
 <pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
 
@@ -314,11 +331,12 @@ plt.legend()
 plt.grid()
 plt.show()
 </code></pre>
+<p><img alt="alt text" src="../image.png"/></p>
 <h3 id="what-does-the-provided-script-do"><strong>What does the provided script do?</strong></h3>
-<p>✅ Computes the range for angles from <span class="arithmatex">\(0^\circ\)</span> to <span class="arithmatex">\(90^\circ\)</span>.<br/>
-✅ Simulates the effect of different initial velocities.<br/>
-✅ Plots a graph of range vs. launch angle.  </p>
-<p>If additional factors such as air resistance or variable gravity (e.g., Mars) need to be considered, the code can be extended. Would you like to incorporate such enhancements? 🚀  </p>
+<p>✅ Computes the range for angles from $0^\circ$ to $90^\circ$.
+✅ Simulates the effect of different initial velocities.
+✅ Plots a graph of range vs. launch angle.</p>
+<p>If additional factors such as air resistance or variable gravity (e.g., Mars) need to be considered, the code can be extended. Would you like to incorporate such enhancements? 🚀</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">

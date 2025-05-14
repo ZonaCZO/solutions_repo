@@ -316,7 +316,8 @@ for i, factor in enumerate(v0_factors):
         traj_type = "Hyperbolic"
     print(f"v0 = {v0/1000:.1f} km/s: Energy = {epsilon:.2e} J/kg, Trajectory = {traj_type}")
 </code></pre>
-<p><strong>Explanation of the Code</strong>
+<p><img alt="alt text" src="../image-2.png"/>
+<strong>Explanation of the Code</strong>
 - <strong>Setup</strong>: The payload is released at 400 km altitude, where <span class="arithmatex">\(r = R + h\)</span>. The circular velocity <span class="arithmatex">\(v_{\text{circular}}\)</span> and escape velocity <span class="arithmatex">\(v_{\text{escape}}\)</span> are computed at this altitude. Initial velocities are set as 0.8, 1.0, and 1.2 times the circular velocity.<br/>
 - <strong>Simulation</strong>: The <code>odeint</code> function solves the system of ODEs, integrating over 2 hours to capture the trajectory shapes.<br/>
 - <strong>Visualization</strong>: Plots the trajectories in the x-y plane, with Earth shown for scale. The aspect ratio is set to equal to ensure accurate representation.<br/>
