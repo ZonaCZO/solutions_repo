@@ -129,6 +129,7 @@ for i in range(0, 100, 20):
     print(f"r = {r_au:.2f} AU, T = {T_years:.2f} years")
 
 ```
+![alt text](image-1.png)
 ---
 **Explanation of the Code**
 - **Constants**: We define $G$ and $M$ (mass of the Sun) to compute the orbital period.

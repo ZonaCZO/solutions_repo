@@ -183,7 +183,7 @@ for i, body in enumerate(bodies_names):
     print(f"  Second Cosmic Velocity: {v2_values[i]:.2f} km/s")
 print(f"Third Cosmic Velocity (from Earth’s orbit): {v3_value:.2f} km/s")
 ```
-![alt text](image.png)
+![alt text](image-3.png)
 
 **Step 4: Importance in Space Exploration**
 
